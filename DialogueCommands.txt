@@ -1,0 +1,16 @@
+"ENDS:" - Ends the dialogue session. Resets all values to reset and close the text box
+
+"NAME:"(Name) - Sets the name of the speaking character to the proceeding name, swaps the side of the name box (Might not work because I am currently swapping values
+
+"PIC1:"(Picture File Name) - Sets the sprite of the left character to the image named
+"PIC2:"(Picture File Name) - Sets the sprite of the right character to the image named
+
+"NOIS:"(Sound File Name) - Plays the noise specified by the proceeding text
+
+"FLTR:"(Color described in r,b,g,a) - Applies a screen block color, will likely change this at some point to make it a material as well...
+
+"SONG:"(Song File Name) - Starts to play the song specified
+
+"WAIT:"(Number) - Waits x amount of frames before proceeding to the next line
+
+"EMPT:" - Clears the text

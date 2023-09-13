@@ -1,0 +1,23 @@
+Hello, World!
+This is a sample Dialogue script to demonstrate some of the capabilities of the Visual Novel system I have implemented!
+You can do a lot of things with this script, and if you want anything more to be developed, just ask me!
+Here are a few examples...
+NAME:Mage
+This is an example of the name box.
+NAME:Character B
+You can use the name box for up to two characters on the screen at the same time.
+Within the script, you will have to preface a line of dialogue with the "NAME:" command to do this.
+NAME:Mage
+PIC1:MageRegularPortrait
+The left box represents the character shown on the left side of the screen.
+NAME:Mage
+PIC2:Untitled
+The right box represents the character shown on the right side of the screen.
+Within the script, you will have to preface a line of dialogue with the "PIC1:" or "PIC2:" command to swap the pictures.
+NAME:Mage
+Respective pictures will be darkened for characters who are not "talking" per say.
+To end a sequence of dialogue, you need to use the "ENDS:" command.
+There are a bunch more commands than this that you can find within the "DialogueCommands" text file at the root of the repository.
+I will also keep an up to date list of all of the commands that can be used within the scripts and I will share it with everyone working on the project.
+Hopefully, this works for everyone for the time being :).
+ENDS:
