@@ -40,6 +40,8 @@ public class DialogueScript : MonoBehaviour
 
     private Image spName;
     private Transform tfName;
+    private RectTransform tfNameRect;
+    private RectTransform tf;
     private AudioSource AuSo;
     private AudioSource textScrollBlip;
     private int size;
@@ -59,6 +61,7 @@ public class DialogueScript : MonoBehaviour
         // Name Box Components
         spName = nameBox.GetComponent<Image>();
         tfName = nameBox.GetComponent<Transform>();
+        tfNameRect = nameBox.GetComponent<RectTransform>();
         nameBox.SetActive(false);
 
         // Sound effects
@@ -66,6 +69,7 @@ public class DialogueScript : MonoBehaviour
 
         // Gets info on the dialogue box components
         textScrollBlip = GetComponent<AudioSource>();
+        tf = GetComponent<RectTransform>();
         spName.color = new Color(1, 1, 1, 0);
         ReadNewScript(initialScriptName);
     }
@@ -88,7 +92,7 @@ public class DialogueScript : MonoBehaviour
         
 
         // Next Dialogue Line
-        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonUp(0)) && reader >= toRead.Length)
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonUp(0)) && reader >= toRead.Length && waitTime == 0)
         {
             // Disable the continue prompt
             contPrompt.SetActive(false);
@@ -137,7 +141,7 @@ public class DialogueScript : MonoBehaviour
         bool finished = false;
         while (toRead.Length >= 5 && !finished)
         {
-            Debug.Log(toRead);
+            //Debug.Log(toRead);
             switch (toRead.Substring(0, 5))
             {
                 case "ENDS:":   // Resets all values to reset and close the text box
@@ -155,7 +159,7 @@ public class DialogueScript : MonoBehaviour
                     break;
 
 
-                case "NAME:": // Sets the name of the speaking character to the proceeding name, swaps the side of the name box (Might not work because I am currently swapping values
+                case "NAME:": // Sets the name of the speaking character to the proceeding name, swaps the side of the name box
                     if(toRead.Substring(5) != "")
                         nameBox.SetActive(true);
                     else
@@ -164,27 +168,42 @@ public class DialogueScript : MonoBehaviour
                     // Reposition name box
                     if (nametag.text != "")
                     {
-                        if (tfName.position.x - tfName.parent.position.x < 0)
-                            tfName.position = new Vector3(tfName.parent.position.x + 9.5F, tfName.position.y, tfName.position.z);
+                        Debug.Log(tfName.position);
+                        Debug.Log(tfName.parent.position);
+                        Debug.Log(tfName.localPosition);
+                        Debug.Log(tfName.parent.localPosition);
+                        Debug.Log(tf.rect.width / 2);
+                        if (tfName.localPosition.x == -(tf.rect.width / 2))
+                        {
+                            tfNameRect.pivot = new Vector2(1, 0);
+                            tfName.localPosition = new Vector3(tf.rect.width / 2, tfName.localPosition.y, tfName.localPosition.z);
+                        }
                         else
-                            tfName.position = new Vector3(tfName.parent.position.x - 9.5F, tfName.position.y, tfName.position.z);
+                        {
+                            tfNameRect.pivot = new Vector2(0, 0);
+                            tfName.localPosition = new Vector3(-(tf.rect.width / 2), tfName.localPosition.y, tfName.localPosition.z);
+                        }
                     }
                     else
-                        tfName.position = new Vector3(tfName.parent.position.x - 9.5F, tfName.position.y, tfName.position.z);
-                    float col = 100F;
-                    if (tfName.position.x - tfName.parent.position.x > 0)
                     {
-                        if(pic1.color.a == 1)
-                            pic1.color = new Color(col / 255F, col / 255F, col / 255F, 1);
-                        if (pic2.color.a == 1)
-                            pic2.color = new Color(255, 255, 255, 1);
+                        spName.color = new Color(1, 1, 1, 1);
                     }
-                    else
+
+
+                    float col = 100F;
+                    if (tfName.localPosition.x == -(tf.rect.width / 2))
                     {
                         if (pic1.color.a == 1)
                             pic1.color = new Color(255, 255, 255, 1);
                         if (pic2.color.a == 1)
                             pic2.color = new Color(col / 255F, col / 255F, col / 255F, 1);
+                    }
+                    else
+                    {
+                        if (pic1.color.a == 1)
+                            pic1.color = new Color(col / 255F, col / 255F, col / 255F, 1);
+                        if (pic2.color.a == 1)
+                            pic2.color = new Color(255, 255, 255, 1);
                     }
 
                     nametag.text = toRead.Substring(5);
