@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -2304,7 +2304,7 @@ MonoBehaviour:
   toSwap: {fileID: 995794742}
   materials:
   - {fileID: 2100000, guid: 5946a8081f05c9449aab747ec3a19e3e, type: 2}
-  - {fileID: 2100000, guid: 5946a8081f05c9449aab747ec3a19e3e, type: 2}
+  - {fileID: 2100000, guid: 2621e8d82e8508e4faaec33e71387473, type: 2}
   - {fileID: 2100000, guid: 4f9a194d4ed50b14d83faad27bfc7c61, type: 2}
   - {fileID: 2100000, guid: 4f9a194d4ed50b14d83faad27bfc7c61, type: 2}
 --- !u!224 &824474033 stripped
@@ -3554,6 +3554,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f76629156212ecc4c970b3fb26c6557e, type: 3}
+    - target: {fileID: 1057693181011455958, guid: 124a5b37c8b742e45afafc0aa7e53daa, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057693181011455958, guid: 124a5b37c8b742e45afafc0aa7e53daa, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057693181011455958, guid: 124a5b37c8b742e45afafc0aa7e53daa, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1057693181011455958, guid: 124a5b37c8b742e45afafc0aa7e53daa, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

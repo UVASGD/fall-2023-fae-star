@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CodeFragments
+  m_Name: BleedingBlade
   m_Shader: {fileID: 4800000, guid: d00073d6c3f590e47a6c5695c09ce40a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -33,11 +33,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex0:
-        m_Texture: {fileID: 2800000, guid: 7a4f2e60179070f47a0594767a47a7cb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7085e1aef788a294abe3ec7ba0fa6438, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex1:
-        m_Texture: {fileID: 2800000, guid: f4e218165025ec24799a4e081f2ca94d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 860ea7aba70ad95418db19cbec719c36, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -50,18 +50,18 @@ Material:
     - _Dampener0: 1
     - _Dampener1: 1
     - _EnableExternalAlpha: 0
-    - _Speed0: 1
-    - _Speed1: 2
+    - _Speed0: 2
+    - _Speed1: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _Transparancy0: 2
-    - _Transparancy1: 4
+    - _Transparancy1: 1
     - _UseUIAlphaClip: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.1509434, b: 0.050060634, a: 1}
+    - _Color: {r: 0, g: 0.026729539, b: 0.16037738, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

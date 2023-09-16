@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MovingLines
+  m_Name: Debuffing
   m_Shader: {fileID: 4800000, guid: d00073d6c3f590e47a6c5695c09ce40a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -25,23 +25,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 36fcc2b09211f0a4bad2a82971a01af7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 36fcc2b09211f0a4bad2a82971a01af7, type: 3}
-        m_Scale: {x: 0, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _NoiseTex0:
         m_Texture: {fileID: 2800000, guid: 36fcc2b09211f0a4bad2a82971a01af7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 36fcc2b09211f0a4bad2a82971a01af7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -51,29 +47,21 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Dampener: 10
     - _Dampener0: 1
     - _Dampener1: 1
-    - _Degree: 1920
     - _EnableExternalAlpha: 0
-    - _Intensity: 3
-    - _Intensity0: 3
-    - _Intensity1: 1
-    - _Speed: 2.5
-    - _Speed0: 1.5
-    - _Speed1: 2
+    - _Speed0: -3
+    - _Speed1: -1.5
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Transparancy0: 3
-    - _Transparancy1: 3
-    - _Transparency0: 1
-    - _Transparency1: 3
+    - _Transparancy0: 2
+    - _Transparancy1: 1
     - _UseUIAlphaClip: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.27705574, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
