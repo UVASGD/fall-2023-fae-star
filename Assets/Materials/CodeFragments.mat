@@ -57,8 +57,8 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Transparancy0: 2
-    - _Transparancy1: 4
+    - _Transparancy0: 1
+    - _Transparancy1: 2
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 0, g: 0.1509434, b: 0.050060634, a: 1}
