@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSelectTransition : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CharacterSelectTransition : MonoBehaviour
     [SerializeField] Transform forwardPosition;
     [SerializeField] RectTransform[] portraitBasePositions;
     [SerializeField] RectTransform portraitSelectedPosition;
+    [SerializeField] GameObject[] characterInfos;
+    [SerializeField] GameObject selectedcharacterInfo;
 
     // This references the display objects that will be set inactive in the transition
     [SerializeField] List<GameObject> oldDisplay;
@@ -23,9 +26,35 @@ public class CharacterSelectTransition : MonoBehaviour
     // Length of the transition in frames
     [SerializeField] int transitionLength;
 
+    private Slider[] selectedInfoSliders;
+    private TextMeshProUGUI selectedName;
+    private Slider[,] characterSliders;
+    private TextMeshProUGUI[] characterNames;
     private int selectedCharacter;
     private bool reversed;
     private int frameCount;
+
+    void Awake()
+    {
+        // Grabs info for the main character info display and individual character info displays
+        selectedInfoSliders = new Slider[3];
+        for(int i = 0; i < 3; i++)
+        {
+            selectedInfoSliders[i] = selectedcharacterInfo.transform.GetChild(i).GetComponent<Slider>();
+        }
+        selectedName = selectedcharacterInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+
+        characterSliders = new Slider[characterInfos.Length, 3];
+        characterNames = new TextMeshProUGUI[characterInfos.Length];
+        for (int i = 0; i < characterInfos.Length; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                characterSliders[i, j] = characterInfos[i].transform.GetChild(j).GetComponent<Slider>();
+            }
+            characterNames[i] = characterInfos[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -60,6 +89,10 @@ public class CharacterSelectTransition : MonoBehaviour
                 {
                     if (i != selectedCharacter)
                         characterPortraits[i].SetActive(true);
+                }
+                foreach (GameObject g in characterInfos)
+                {
+                    g.SetActive(true);
                 }
                 this.gameObject.SetActive(false);
             }
@@ -112,6 +145,19 @@ public class CharacterSelectTransition : MonoBehaviour
         {
             if (i != selectedCharacter)
                 characterPortraits[i].SetActive(false);
+        }
+        foreach(GameObject g in characterInfos)
+        {
+            if (g.activeSelf != false)
+                g.SetActive(false);
+        }
+
+
+        // Alters the main character info display to represent the selected character
+        selectedName.text = characterNames[selectedCharacter].text;
+        for(int i = 0; i < 3; i++)
+        {
+            selectedInfoSliders[i].value = characterSliders[selectedCharacter, i].value;
         }
         frameCount = 0;
     }
