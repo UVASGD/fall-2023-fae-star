@@ -50,15 +50,15 @@ Material:
     - _Dampener0: 1
     - _Dampener1: 1
     - _EnableExternalAlpha: 0
-    - _Speed0: 2
-    - _Speed1: 1
+    - _Speed0: 1
+    - _Speed1: 2
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Transparancy0: 2
-    - _Transparancy1: 1
+    - _Transparancy0: 1
+    - _Transparancy1: 2
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 0, g: 0.026729539, b: 0.16037738, a: 1}
