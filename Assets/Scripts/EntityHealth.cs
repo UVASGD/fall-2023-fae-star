@@ -1,26 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour
 {
     public int maxHealth = 100;
 
-    public int currentHealth;
+    private int currentHealth;
     public int health {get {return currentHealth; }}
 
+    private Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        slider = GetComponent<Slider>();
         // Might need to change this if we want damage to be preserved between fights?
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void ChangeHealth(int amount)
@@ -34,7 +31,7 @@ public class EntityHealth : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         // Mathf.Clamp(xValue, xMin, xMax)
-        Debug.Log(currentHealth + "/" + maxHealth);
-        
+
+        slider.value = (float) currentHealth / maxHealth;
     }
 }
