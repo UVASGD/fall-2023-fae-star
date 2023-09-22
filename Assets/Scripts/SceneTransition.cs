@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
 {
-
-    public GameObject screen;
-    Image scr;
-    public CanvasGroup menu;
-    public float duration = 2f;
+    [SerializeField] GameObject screen;
+    [SerializeField] CanvasGroup menu;
+    [SerializeField] float duration = 2f;
+    private Image scr;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         screen.SetActive(true);
         scr = screen.GetComponent<Image>();
