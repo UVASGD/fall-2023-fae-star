@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterSelectTransition : MonoBehaviour
+public class CharacterSelectTransition : MonoBehaviour, Transition
 {
     // These reference the specific character objects to be transitioned
     [SerializeField] GameObject[] characterPortraits;
@@ -32,6 +32,7 @@ public class CharacterSelectTransition : MonoBehaviour
     private TextMeshProUGUI[] characterNames;
     private int selectedCharacter;
     private bool reversed;
+    private bool firstActivation;
     private int frameCount;
 
     void Awake()
@@ -94,10 +95,9 @@ public class CharacterSelectTransition : MonoBehaviour
                 {
                     g.SetActive(true);
                 }
-                this.gameObject.SetActive(false);
             }
         }
-        else
+        else if(firstActivation)
         {
             int at = 0;
             float progress = (float)frameCount / transitionLength;
@@ -131,8 +131,15 @@ public class CharacterSelectTransition : MonoBehaviour
             frameCount++;
     }
 
-    void Transition(int characterPosition)
+    public void Transition(int characterPosition)
     {
+        // Update state
+        GlobalStateTracker.currentEntity = characterSprites[characterPosition];
+
+        // Ping first activation
+        firstActivation = true;
+        
+        // Start transition
         reversed = false;
         selectedCharacter = characterPosition;
 
@@ -164,6 +171,7 @@ public class CharacterSelectTransition : MonoBehaviour
 
     public void ReverseTransition()
     {
+        // Start Reverse Transition
         reversed = true;
         foreach (GameObject g in newDisplay)
         {
