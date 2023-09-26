@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TransitionManager : MonoBehaviour
 {
+    [SerializeField] GameObject[] characterObjects;
+    private static List<GameObject> characters;
     [SerializeField] GameObject[] transitionsObjects;
     private static List<Transition> transitions;
 
@@ -13,6 +15,11 @@ public class TransitionManager : MonoBehaviour
         for (int i = 0; i < transitionsObjects.Length; i++)
         {
             transitions.Add(transitionsObjects[i].GetComponent(typeof(Transition)) as Transition);
+        }
+        characters = new List<GameObject>();
+        foreach (GameObject g in characterObjects)
+        {
+            characters.Add(g);
         }
     }
     
@@ -29,7 +36,14 @@ public class TransitionManager : MonoBehaviour
                 if (selected == 0)
                 {
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionMenuing;
-                    transitions[1].Transition(selected);
+                    if (GlobalStateTracker.currentEntity == characters[0]) 
+                        transitions[1].Transition(selected);
+                    else if (GlobalStateTracker.currentEntity == characters[1]) 
+                        transitions[2].Transition(selected);
+                    else if (GlobalStateTracker.currentEntity == characters[2]) 
+                        transitions[3].Transition(selected);
+                    else 
+                        transitions[4].Transition(selected);
                 }
                 else if (selected == 1)
                 {
@@ -71,7 +85,14 @@ public class TransitionManager : MonoBehaviour
 
             case GlobalStateTracker.States.ActionMenuing:
                 GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
-                transitions[1].ReverseTransition();
+                if (GlobalStateTracker.currentEntity == characters[0]) 
+                    transitions[1].ReverseTransition();
+                else if (GlobalStateTracker.currentEntity == characters[1]) 
+                    transitions[2].ReverseTransition();
+                else if (GlobalStateTracker.currentEntity == characters[2]) 
+                    transitions[3].ReverseTransition();
+                else 
+                    transitions[4].ReverseTransition();
                 break;
 
             case GlobalStateTracker.States.ItemMenuing:
