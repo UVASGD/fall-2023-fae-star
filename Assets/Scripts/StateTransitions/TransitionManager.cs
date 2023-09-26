@@ -38,6 +38,18 @@ public class TransitionManager : MonoBehaviour
                 }
                 break;
 
+            case (GlobalStateTracker.States.ActionMenuing, null):
+                if (selected == 0) //assumed to mean healing move is selected
+                {
+                    GlobalStateTracker.battleState = GlobalStateTracker.CharacterSelect;
+                    //rather shouldn't it be CharacterSelectTransition?
+                    transitions[2].Transition(selected); //what does this mean 
+                }
+                else if (selected == 1) {
+                    //assumed other actions from the action menu will be handled here
+                }
+                break;
+
             default:
                 reverseTransition();
                 break;
