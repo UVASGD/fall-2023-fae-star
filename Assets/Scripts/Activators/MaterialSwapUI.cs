@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MaterialSwapUI : MonoBehaviour, GenericActivator
+public class MaterialSwapUI : MonoBehaviour, IActivator
 {
     [SerializeField] GameObject toSwap;
     [SerializeField] List<Material> materials;
@@ -15,12 +15,12 @@ public class MaterialSwapUI : MonoBehaviour, GenericActivator
         img = toSwap.GetComponent<Image>();
     }
 
-    public void activate(int activationStyle)
+    public void Activate(int activationStyle)
     {
         img.material = materials[activationStyle];
     }
 
-    public void deactivate(int activationStyle)
+    public void Deactivate(int activationStyle)
     {
         // Do Nothing
     }

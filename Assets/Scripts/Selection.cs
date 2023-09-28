@@ -10,7 +10,7 @@ public class Selection : MonoBehaviour
     [SerializeField] GameObject outliner;
     [SerializeField] GameObject reverseActivation;
     [SerializeField] GameObject[] swapActivators;
-    private List<GenericActivator> iSwapActivators;
+    private List<IActivator> iSwapActivators;
 
     private List<List<GameObject>> listItems;
     private int x = 0;
@@ -21,10 +21,10 @@ public class Selection : MonoBehaviour
     {
         rtf = outliner.GetComponent<RectTransform>();
 
-        iSwapActivators = new List<GenericActivator>();
+        iSwapActivators = new List<IActivator>();
         for (int i = 0; i < swapActivators.Length; i++)
         {
-            iSwapActivators.Add(swapActivators[i].GetComponent(typeof(GenericActivator)) as GenericActivator);
+            iSwapActivators.Add(swapActivators[i].GetComponent(typeof(IActivator)) as IActivator);
         }
 
         // List instantiation bc Unity is stupid and doesn't allow serialization of 2D arrays
@@ -109,9 +109,9 @@ public class Selection : MonoBehaviour
         {
             int currentSelection = currentlySelected();
 
-            foreach (GenericActivator activator in iSwapActivators)
+            foreach (IActivator activator in iSwapActivators)
             {
-                activator.activate(currentSelection);
+                activator.Activate(currentSelection);
             }
         }
 
