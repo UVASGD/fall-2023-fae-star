@@ -8,10 +8,9 @@ public class Selection : MonoBehaviour
     [SerializeField] List<GameObject> items;
     [SerializeField] List<int> listSizes;
     [SerializeField] GameObject outliner;
-    [SerializeField] GameObject[] selectionActivations;
     [SerializeField] GameObject reverseActivation;
     [SerializeField] GameObject[] swapActivators;
-    List<GenericActivator> iSwapActivators;
+    private List<GenericActivator> iSwapActivators;
 
     private List<List<GameObject>> listItems;
     private int x = 0;
@@ -141,16 +140,8 @@ public class Selection : MonoBehaviour
     public void Select()
     {
         int selected = currentlySelected();
-        if (selectionActivations[selected] != null)
-        {
-            selectionActivations[selected].SetActive(true);
-            selectionActivations[selected].SendMessage("Transition", selected);
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            ReverseSelect();
-        }
+        gameObject.SetActive(false);
+        TransitionManager.processTransition(selected);
     }
 
     public void ReverseSelect()
@@ -158,8 +149,7 @@ public class Selection : MonoBehaviour
         if (reverseActivation != null)
         {
             reverseActivation.SetActive(true);
-            reverseActivation.SendMessage("ReverseTransition");
-            gameObject.SetActive(false);
+            TransitionManager.reverseTransition();
         }
     }
 

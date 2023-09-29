@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplaySwap : MonoBehaviour
+public class DisplaySwap : MonoBehaviour, Transition
 {
     // This references the display objects that will be set inactive in the transition
     [SerializeField] List<GameObject> oldDisplay;
@@ -11,7 +11,7 @@ public class DisplaySwap : MonoBehaviour
     // This references the display objects that will be set active in the transition
     [SerializeField] List<GameObject> newDisplay;
 
-    void Transition(int selected)
+    public void Transition(int selected)
     {
         foreach (GameObject g in oldDisplay)
         {
