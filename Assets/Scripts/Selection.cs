@@ -57,7 +57,7 @@ public class Selection : MonoBehaviour
         y = 0;
         if (listItems != null)
         {
-            onSwap();
+            onSwap(0);
         }
     }
 
@@ -70,27 +70,27 @@ public class Selection : MonoBehaviour
             x += listItems.Count;
             x %= listItems.Count;
             y = Mathf.Min(y, listItems[x].Count);
-            onSwap();
+            onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             x++;
             x %= listItems.Count;
             y = Mathf.Min(y, listItems[x].Count);
-            onSwap();
+            onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             y--;
             y += listItems[x].Count;
             y %= listItems[x].Count;
-            onSwap();
+            onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             y++;
             y %= listItems[x].Count;
-            onSwap();
+            onSwap(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -104,19 +104,19 @@ public class Selection : MonoBehaviour
     }
 
     // Activates all activators related to swapping to the current option
-    void onSwap()
+    void onSwap(int swapSource) //swapSource 0 means keyboard, swapSource 1 means mouse
     {
-        if(iSwapActivators.Count != 0)
+        adjustOutline();
+
+        if (iSwapActivators.Count != 0)
         {
             int currentSelection = currentlySelected();
 
             foreach (GenericActivator activator in iSwapActivators)
             {
-                activator.activate(currentSelection);
+                activator.activate(currentSelection, swapSource);
             }
         }
-
-        adjustOutline();
     }
 
     // Readjusts the outline to surround currently selected object
@@ -134,7 +134,7 @@ public class Selection : MonoBehaviour
     {
         x = xy / 10 - 1;
         y = xy % 10 - 1;
-        onSwap();
+        onSwap(1);
     }
 
     // Activates when player confirms selection

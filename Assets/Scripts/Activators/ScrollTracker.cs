@@ -2,25 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class ScrollTracker : MonoBehaviour, GenericActivator
 {
     [SerializeField] Scrollbar scrollbar;
-    
-    // Start is called before the first frame update
-    void Awake()
-    {
-        
-    }
+    [SerializeField] RectTransform scrollView;
+    [SerializeField] RectTransform contentHolder;
+    [SerializeField] RectTransform outline;
 
-    public void activate(int activationStyle)
+    public void activate(int activationStyle, int swapSource)
     {
-        // Your code will likely have some sort of  manipulation of this value based off of the position of the selected object
-        scrollbar.value = scrollbar.value - 0.1f;
-    }
-
-    public void deactivate(int activationStyle)
-    {
-        // Do Nothing
+        if (swapSource == 0)
+        {
+            float outlineBottom = outline.parent.localPosition.y + contentHolder.localPosition.y  - outline.sizeDelta.y;
+            float outlineTop = outline.parent.localPosition.y + contentHolder.localPosition.y;
+            if (outlineBottom < -scrollView.sizeDelta.y + 15)
+            {
+                int bottomDistValue = (int) (-outlineBottom - scrollView.sizeDelta.y);
+                scrollbar.value -= (float) bottomDistValue / (contentHolder.sizeDelta.y - scrollView.sizeDelta.y);
+            }
+            else if(outlineTop > -15)
+            {
+                int topDistValue = (int) (outlineTop + 15);
+                scrollbar.value += (float) topDistValue / (contentHolder.sizeDelta.y - scrollView.sizeDelta.y);
+            }
+        }
     }
 }

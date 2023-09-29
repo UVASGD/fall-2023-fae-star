@@ -15,13 +15,8 @@ public class MaterialSwapUI : MonoBehaviour, GenericActivator
         img = toSwap.GetComponent<Image>();
     }
 
-    public void activate(int activationStyle)
+    public void activate(int activationStyle, int source)
     {
         img.material = materials[activationStyle];
-    }
-
-    public void deactivate(int activationStyle)
-    {
-        // Do Nothing
     }
 }
