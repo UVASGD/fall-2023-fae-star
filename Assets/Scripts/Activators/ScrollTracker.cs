@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class ScrollTracker : MonoBehaviour, GenericActivator
+public class ScrollTracker : MonoBehaviour, IActivator
 {
     [SerializeField] Scrollbar scrollbar;
     [SerializeField] RectTransform scrollView;
     [SerializeField] RectTransform contentHolder;
     [SerializeField] RectTransform outline;
 
-    public void activate(int activationStyle, int swapSource)
+    public void Activate(int activationStyle, int swapSource)
     {
         if (swapSource == 0)
         {
@@ -28,5 +28,10 @@ public class ScrollTracker : MonoBehaviour, GenericActivator
                 scrollbar.value += (float) topDistValue / (contentHolder.sizeDelta.y - scrollView.sizeDelta.y);
             }
         }
+    }
+
+    public void Deactivate(int activationStyle, int source)
+    {
+        // DO NOTHING
     }
 }
