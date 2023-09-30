@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public interface IActivator
 {
-    void Activate(int activationStyle);
+    void Activate(int activationStyle, int source);
 
-    void Deactivate(int deactivationStyle);
+    void Deactivate(int deactivationStyle, int source);
 }

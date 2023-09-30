@@ -15,13 +15,13 @@ public class MaterialSwapUI : MonoBehaviour, IActivator
         img = toSwap.GetComponent<Image>();
     }
 
-    public void Activate(int activationStyle)
+    public void Activate(int activationStyle, int source)
     {
         img.material = materials[activationStyle];
     }
 
-    public void Deactivate(int activationStyle)
+    public void Deactivate(int activationStyle, int source)
     {
-        // Do Nothing
+        // DO NOTHING
     }
 }

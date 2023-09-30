@@ -21,7 +21,7 @@ public class DisplayActionCost : MonoBehaviour, IActivator
         defaultFillImageWidth = fillImage.sizeDelta.x;
     }
 
-    public void Activate(int activationStyle)
+    public void Activate(int activationStyle, int source)
     {
         if(activationStyle != actionListIndex) return;
         print("ran");
@@ -36,7 +36,7 @@ public class DisplayActionCost : MonoBehaviour, IActivator
         fillImage.sizeDelta = new Vector2(Mathf.Lerp(defaultFillImageWidth, 0, (float)cost / 10), fillImage.sizeDelta.y);
     }
 
-    public void Deactivate(int deactivationStyle)
+    public void Deactivate(int deactivationStyle, int source)
     {
         if(!active) return;
 
