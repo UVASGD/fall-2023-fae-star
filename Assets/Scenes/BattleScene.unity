@@ -4393,7 +4393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: Minor Heal
+      value: Lesser Heal
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -4766,7 +4766,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 826277476014382769, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: 3MP
+      value: 5MP
       objectReference: {fileID: 0}
     - target: {fileID: 826277476014382769, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -4858,7 +4858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: Minor Heal
+      value: Spike Growth
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -4940,6 +4940,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5414371015490493625, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
   m_PrefabInstance: {fileID: 936256220}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &936256226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936256222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27032069fc2fdbf4595658944889544b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionListIndex: 3
+  cost: 5
+  backingCostFillImage: {fileID: 62096086}
+  fillImage: {fileID: 329669698}
+  active: 0
 --- !u!1001 &963641153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8700,6 +8717,7 @@ RectTransform:
   m_Children:
   - {fileID: 329669698}
   - {fileID: 62096086}
+  - {fileID: 329669698}
   m_Father: {fileID: 36034623}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8727,7 +8745,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 826277476014382769, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: 3MP
+      value: 4MP
       objectReference: {fileID: 0}
     - target: {fileID: 826277476014382769, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -8819,7 +8837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: Minor Heal
+      value: Heal
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -8901,6 +8919,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5414371015490493625, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
   m_PrefabInstance: {fileID: 1708246291}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1708246297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708246293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27032069fc2fdbf4595658944889544b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionListIndex: 2
+  cost: 4
+  backingCostFillImage: {fileID: 62096086}
+  fillImage: {fileID: 329669698}
+  active: 0
 --- !u!1 &1712469512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9343,7 +9378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051177884274757733, guid: e74194a4e2fa58447855b0daa36827d9, type: 3}
       propertyPath: swapActivators.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8051177884274757733, guid: e74194a4e2fa58447855b0daa36827d9, type: 3}
       propertyPath: swapActivators.Array.data[0]
@@ -9357,6 +9392,18 @@ PrefabInstance:
       propertyPath: swapActivators.Array.data[2]
       value: 
       objectReference: {fileID: 883553055}
+    - target: {fileID: 8051177884274757733, guid: e74194a4e2fa58447855b0daa36827d9, type: 3}
+      propertyPath: swapActivators.Array.data[3]
+      value: 
+      objectReference: {fileID: 1708246293}
+    - target: {fileID: 8051177884274757733, guid: e74194a4e2fa58447855b0daa36827d9, type: 3}
+      propertyPath: swapActivators.Array.data[4]
+      value: 
+      objectReference: {fileID: 936256222}
+    - target: {fileID: 8051177884274757733, guid: e74194a4e2fa58447855b0daa36827d9, type: 3}
+      propertyPath: swapActivators.Array.data[5]
+      value: 
+      objectReference: {fileID: 1959127151}
     - target: {fileID: 8051177884274757733, guid: e74194a4e2fa58447855b0daa36827d9, type: 3}
       propertyPath: selectionActivations.Array.size
       value: 2
@@ -10444,7 +10491,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 826277476014382769, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: 3MP
+      value: 6MP
       objectReference: {fileID: 0}
     - target: {fileID: 826277476014382769, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -10536,7 +10583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_text
-      value: Minor Heal
+      value: Stoneskin
       objectReference: {fileID: 0}
     - target: {fileID: 2124185592606917260, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
       propertyPath: m_fontSize
@@ -10618,6 +10665,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 875490883864844400, guid: dcb0a03225373cd4b845b6ebf380e352, type: 3}
   m_PrefabInstance: {fileID: 1959127150}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1959127156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959127151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27032069fc2fdbf4595658944889544b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionListIndex: 4
+  cost: 6
+  backingCostFillImage: {fileID: 62096086}
+  fillImage: {fileID: 329669698}
+  active: 0
 --- !u!1001 &1967628235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11184,8 +11248,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1471970414}
   m_HandleRect: {fileID: 1471970413}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.70422536
+  m_Value: 1.0000002
+  m_Size: 0.7042253
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
