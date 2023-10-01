@@ -282,8 +282,9 @@ GameObject:
   - component: {fileID: 6233087568531976419}
   - component: {fileID: 4927677252533234798}
   - component: {fileID: 8350688758270240989}
+  - component: {fileID: 6999668203068582241}
   m_Layer: 5
-  m_Name: AttackSelectBar
+  m_Name: ActionSelectItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,3 +353,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8088333d3a7e8fb46af2419fe33846ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6999668203068582241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414371015490493625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27032069fc2fdbf4595658944889544b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionListIndex: 0
+  cost: 0
+  backingCostFillImage: {fileID: 0}
+  fillImage: {fileID: 0}
+  active: 0

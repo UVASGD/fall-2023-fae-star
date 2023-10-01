@@ -10,8 +10,8 @@ public class DisplayActionCost : MonoBehaviour, IActivator
     [Header("References")]
     [SerializeField] int actionListIndex; //What index in the action list it is. Definitely a way to automatically set this
     [SerializeField] int cost;
-    [SerializeField] RectTransform backingCostFillImage;
-    [SerializeField] RectTransform fillImage;
+    [SerializeField] public RectTransform backingCostFillImage;
+    [SerializeField] public RectTransform fillImage;
 
     float defaultFillImageWidth;
     public bool active = false;

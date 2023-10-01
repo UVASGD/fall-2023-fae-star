@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Selection : MonoBehaviour
 {
-    [SerializeField] List<GameObject> items;
-    [SerializeField] List<int> listSizes;
+    [SerializeField] public List<GameObject> items;
+    [SerializeField] public List<int> listSizes;
     [SerializeField] GameObject outliner;
     [SerializeField] GameObject reverseActivation;
     [SerializeField] GameObject[] swapActivators;
@@ -48,6 +48,11 @@ public class Selection : MonoBehaviour
         }
 
         adjustOutline();
+    }
+
+    public void AddSwapActivators(IActivator activator)
+    {
+        iSwapActivators.Add(activator);
     }
 
     public void ResetSelection()
