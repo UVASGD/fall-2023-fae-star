@@ -8,10 +8,10 @@ public class DisplayActionCost : MonoBehaviour, IActivator
     //Display the cost of an action by hiding the portion of the respective bar to show the change before and after
     //TODO : Make this script reference the active character's stats to change the bar's width in accordance with current and max mana/health
     [Header("References")]
-    [SerializeField] int actionListIndex; //What index in the action list it is. Definitely a way to automatically set this
-    [SerializeField] int cost;
-    [SerializeField] RectTransform backingCostFillImage;
-    [SerializeField] RectTransform fillImage;
+    [SerializeField] public int actionListIndex; //What index in the action list it is. Definitely a way to automatically set this
+    [SerializeField] public int cost;
+    [SerializeField] public RectTransform backingCostFillImage;
+    [SerializeField] public RectTransform fillImage;
 
     float defaultFillImageWidth;
     public bool active = false;
