@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public interface GenericActivator
+public interface IActivator
 {
-    void activate(int activationStyle);
+    void Activate(int activationStyle, int source);
 
-    void deactivate(int deactivationStyle);
+    void Deactivate(int deactivationStyle, int source);
 }

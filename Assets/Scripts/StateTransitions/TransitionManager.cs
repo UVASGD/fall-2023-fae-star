@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TransitionManager : MonoBehaviour
 {
@@ -8,6 +11,9 @@ public class TransitionManager : MonoBehaviour
     private static List<GameObject> characters;
     [SerializeField] GameObject[] transitionsObjects;
     private static List<Transition> transitions;
+    // change later to use global storage
+    [SerializeField] Slider manabarObject;
+    private static Slider manabar;
 
     void Awake()
     {
@@ -21,6 +27,7 @@ public class TransitionManager : MonoBehaviour
         {
             characters.Add(g);
         }
+        manabar = manabarObject;
     }
     
     public static void processTransition(int selected)
@@ -52,6 +59,7 @@ public class TransitionManager : MonoBehaviour
                 }
                 break;
 
+<<<<<<< HEAD
             case (GlobalStateTracker.States.ActionMenuing, null):
                 if (selected == 0) //assumed to mean healing move is selected
                 {
@@ -62,6 +70,20 @@ public class TransitionManager : MonoBehaviour
                 else if (selected == 1) {
                     //assumed other actions from the action menu will be handled here
                 }
+=======
+            // Should eventually move this code to GlobalStateTracker.States.PostActionEntitySelect
+            case (GlobalStateTracker.States.ActionMenuing, null):
+                int characterIndex = 0;
+                for (characterIndex = 0; characterIndex < characters.Count; characterIndex++)
+                {
+                    if (GlobalStateTracker.currentEntity == characters[characterIndex])
+                        break; 
+                }
+
+                KeyValuePair<string, (int, Action, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
+                manabar.value -= (float) selectedMove.Value.Item1 / 10;
+                reverseTransition();
+>>>>>>> develop
                 break;
 
             default:
