@@ -21,6 +21,8 @@ public class GlobalStateTracker
 
     public static string currentAction = null;
 
+    public static string currentItem = null;
+
     public static string toString()
     {
         return $"State: {battleState}\t" + (currentEntity != null ? $"Current Entity: {currentEntity}\t" : "") + (currentAction != null ? $"CurrentAction: {currentAction}" : "");

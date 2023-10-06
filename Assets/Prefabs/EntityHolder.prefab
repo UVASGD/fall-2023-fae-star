@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1057693181858554063}
   m_Layer: 0
-  m_Name: TeamMember
+  m_Name: EntityHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

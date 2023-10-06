@@ -29,7 +29,7 @@ public class LoadMoveList : MonoBehaviour
 
             // Loop through the Dictionary
             int at = 0;
-            foreach (KeyValuePair<string, (int, Action, int)> kvp in GlobalMoveLists.MoveList[i])
+            foreach (KeyValuePair<string, (int, GlobalMoveLists.ActionTypes, Action, int)> kvp in GlobalMoveLists.MoveList[i])
             {
                 // Instantiate object with parent as the transform of the content box
                 GameObject currentItem = Instantiate(actionSelectItemPrefab, content);
@@ -37,7 +37,7 @@ public class LoadMoveList : MonoBehaviour
                 // Set up the values of each action item in the list
                 currentItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = kvp.Key;
                 int manaCost = kvp.Value.Item1;
-                if (kvp.Value.Item2 != null)
+                if (kvp.Value.Item2 != GlobalMoveLists.ActionTypes.none)
                     currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (manaCost + "mp");
                 else
                     currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
@@ -47,7 +47,7 @@ public class LoadMoveList : MonoBehaviour
                 EventTrigger trigger = currentItem.GetComponent<EventTrigger>();
                 EventTrigger.Entry hoverTrigger = new EventTrigger.Entry();
                 hoverTrigger.eventID = EventTriggerType.PointerEnter;
-                hoverTrigger.callback.AddListener((eventData) => { selection.SetSelect(kvp.Value.Item3); });
+                hoverTrigger.callback.AddListener((eventData) => { selection.SetSelect(kvp.Value.Item4); });
                 trigger.triggers.Add(hoverTrigger);
                 EventTrigger.Entry clickTrigger = new EventTrigger.Entry();
                 clickTrigger.eventID = EventTriggerType.PointerClick;

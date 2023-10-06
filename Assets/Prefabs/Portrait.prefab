@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 8031842262286722281}
   - component: {fileID: 3576276005564799338}
   m_Layer: 5
-  m_Name: CharacterName
+  m_Name: EntityName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -858,7 +858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.5714286}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -12}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8031842262286722281
@@ -891,8 +891,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b570df6695b80be409b61942209bdd29, type: 2}
-  m_sharedMaterial: {fileID: -6763695412717784364, guid: b570df6695b80be409b61942209bdd29, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5addd743a1682864b811dc5ef318462f, type: 2}
+  m_sharedMaterial: {fileID: -4340351767317762543, guid: 5addd743a1682864b811dc5ef318462f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1100,7 +1100,7 @@ GameObject:
   - component: {fileID: 8887058529842216605}
   - component: {fileID: -2493135391083530026}
   m_Layer: 5
-  m_Name: CharacterPortrait
+  m_Name: Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
