@@ -12,12 +12,24 @@ public class TransitionManager : MonoBehaviour
 
     /*
      * Transition Orders:
-     * 0. Character Select -> Action Select
+     * 0: Character Select -> Action Select
      * 1-4: Action Select -> Respective Character Actions
-     * 5: ????
+     * 5: Character Actions -> Single Target Enemy Select
+     * 6-9: Character Actions -> Single Target Assist Select
      */
-    [SerializeField] GameObject[] transitionsObjects;
-    private static List<Transition> transitions;
+    [SerializeField] GameObject[] serializedTransitionsObject;
+    private static List<GameObject> transitionsObjects;
+    private static List<ITransition> transitions;
+    /* 
+     * Selection Orders:
+     * 0: Character Select
+     * 1: Action Select
+     * 2-5: Action List Selects
+     * 6: Enemy Select
+     * 7: Ally Select
+     */
+    [SerializeField] Selection[] selectionObjects;
+    private static List<Selection> selections;
     // change later to use global storage
     [SerializeField] Slider manabarObject;
     private static Slider manabar;
@@ -26,10 +38,20 @@ public class TransitionManager : MonoBehaviour
 
     void Awake()
     {
-        transitions = new List<Transition>();
-        for (int i = 0; i < transitionsObjects.Length; i++)
+        transitionsObjects = new List<GameObject>();
+        foreach (GameObject g in serializedTransitionsObject)
         {
-            transitions.Add(transitionsObjects[i].GetComponent(typeof(Transition)) as Transition);
+            transitionsObjects.Add(g);
+        }
+        transitions = new List<ITransition>();
+        for (int i = 0; i < transitionsObjects.Count; i++)
+        {
+            transitions.Add(transitionsObjects[i].GetComponent(typeof(ITransition)) as ITransition);
+        }
+        selections = new List<Selection>();
+        foreach (Selection s in selectionObjects)
+        {
+            selections.Add(s);
         }
         characters = new List<GameObject>();
         foreach (GameObject g in characterObjects)
@@ -91,6 +113,26 @@ public class TransitionManager : MonoBehaviour
                     case GlobalMoveLists.ActionTypes.SA: // Single target ally action selected
                         GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
                         GlobalStateTracker.currentAction = selectedMove.Key;
+                        if (GlobalStateTracker.currentEntity == characters[0])
+                        {
+                            selections[7].reverseActivation = transitionsObjects[6];
+                            transitions[6].Transition(selected);
+                        }
+                        else if (GlobalStateTracker.currentEntity == characters[1])
+                        {
+                            selections[7].reverseActivation = transitionsObjects[7];
+                            transitions[7].Transition(selected);
+                        }
+                        else if (GlobalStateTracker.currentEntity == characters[2])
+                        {
+                            selections[7].reverseActivation = transitionsObjects[8];
+                            transitions[8].Transition(selected);
+                        }
+                        else
+                        {
+                            selections[7].reverseActivation = transitionsObjects[9];
+                            transitions[9].Transition(selected);
+                        }
 
                         break;
 
@@ -156,8 +198,22 @@ public class TransitionManager : MonoBehaviour
                 if(GlobalStateTracker.currentAction != null)
                 {
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionMenuing;
-                    GlobalStateTracker.currentAction = null;
-                    transitions[5].ReverseTransition();
+                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == GlobalMoveLists.ActionTypes.SE)
+                    {
+                        GlobalStateTracker.currentAction = null;
+                        transitions[5].ReverseTransition();
+                    }
+                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == GlobalMoveLists.ActionTypes.SA)
+                    {
+                        if (GlobalStateTracker.currentEntity == characters[0])
+                            transitions[6].ReverseTransition();
+                        else if (GlobalStateTracker.currentEntity == characters[1])
+                            transitions[7].ReverseTransition();
+                        else if (GlobalStateTracker.currentEntity == characters[2])
+                            transitions[8].ReverseTransition();
+                        else
+                            transitions[9].ReverseTransition();
+                    }
                 }
                 break;
         }

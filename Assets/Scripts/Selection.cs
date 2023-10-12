@@ -8,7 +8,7 @@ public class Selection : MonoBehaviour
     [SerializeField] public List<GameObject> items;
     [SerializeField] public List<int> listSizes;
     [SerializeField] GameObject outliner;
-    [SerializeField] GameObject reverseActivation;
+    [SerializeField] public GameObject reverseActivation;
     [SerializeField] GameObject[] swapActivators;
     private List<IActivator> iSwapActivators = new List<IActivator>();
 
