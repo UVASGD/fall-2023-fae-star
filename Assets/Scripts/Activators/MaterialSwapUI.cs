@@ -18,9 +18,12 @@ public class MaterialSwapUI : MonoBehaviour, IActivator
 
     public void Activate(int activationStyle, int source)
     {
-        img.material = materials[activationStyle];
+        if (activationStyle < materials.Count)
+        {
+            img.material = materials[activationStyle];
 
-        UITopImage.color = materials[activationStyle].GetColor("_Color");
+            UITopImage.color = materials[activationStyle].GetColor("_Color");
+        }
     }
 
     public void Deactivate(int activationStyle, int source)

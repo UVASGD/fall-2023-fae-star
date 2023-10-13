@@ -66,9 +66,19 @@ public class TransitionManager : MonoBehaviour
         switch (GlobalStateTracker.battleState)
         {
             case GlobalStateTracker.States.CharacterSelect:
-                GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
-                characterIndex = selected;
-                transitions[0].Transition(selected);
+                if (selected != 4)
+                {
+                    GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
+                    characterIndex = selected;
+                    transitions[0].Transition(selected);
+                }
+                else
+                {
+                    // This will later be turned into a valid "Skip turn" block which actually works, but I am lazy right now and am just going to do this
+                    GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
+                    characterIndex = 0;
+                    transitions[0].Transition(0);
+                }
                 break;
 
             case GlobalStateTracker.States.ActionSelect:
@@ -153,8 +163,8 @@ public class TransitionManager : MonoBehaviour
 
             // Should eventually move this code to GlobalStateTracker.States.PostActionEntitySelect
             case GlobalStateTracker.States.PostActionEntitySelect:
-                KeyValuePair<string, (int, GlobalMoveLists.ActionTypes, Action, int)> move = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
-                manabar.value -= (float) move.Value.Item1 / 10;
+                //KeyValuePair<string, (int, GlobalMoveLists.ActionTypes, Action, int)> move = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
+                //manabar.value -= (float) move.Value.Item1 / 10;
                 reverseTransition();
                 break;
 
@@ -195,7 +205,7 @@ public class TransitionManager : MonoBehaviour
                 break;
 
             case GlobalStateTracker.States.PostActionEntitySelect:
-                if(GlobalStateTracker.currentAction != null)
+                if (GlobalStateTracker.currentAction != null)
                 {
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionMenuing;
                     if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == GlobalMoveLists.ActionTypes.SE)

@@ -135,17 +135,23 @@ public class Selection : MonoBehaviour
     // Allows for external signals to swap the selection, treats objects as if they were non-zero indexed (because hackey solution)
     public void SetSelect(int xy)
     {
-        x = xy / 10 - 1;
-        y = xy % 10 - 1;
-        onSwap(1);
+        if (gameObject.activeInHierarchy == true)
+        {
+            x = xy / 10 - 1;
+            y = xy % 10 - 1;
+            onSwap(1);
+        }
     }
 
     // Activates when player confirms selection
     public void Select()
     {
-        int selected = currentlySelected();
-        gameObject.SetActive(false);
-        TransitionManager.processTransition(selected);
+        if (gameObject.activeInHierarchy == true)
+        {
+            int selected = currentlySelected();
+            gameObject.SetActive(false);
+            TransitionManager.processTransition(selected);
+        }
     }
 
     public void ReverseSelect()
