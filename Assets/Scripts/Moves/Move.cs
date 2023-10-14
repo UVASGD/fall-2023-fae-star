@@ -21,18 +21,19 @@ public abstract class Move {
         PB,
         none,
     }
-    int manaCost;
-    ActionTypes actionType;
+    private int manaCost;
+    private ActionTypes actionType;
+
 
     //to be implemented for each subclass
     public abstract void invoke();
 
-    public void setManaCost(int manaCostValue) {
-        manaCost = manaCostValue;
+    public void getManaCost() {
+        return manaCost;
     }
 
-    public void setActionOnSelect (ActionTypes actionValue) { 
-        actionType = actionValue;
+    public void getActionType () { 
+        return actionType;
     }
 
 }
