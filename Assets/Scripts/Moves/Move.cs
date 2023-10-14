@@ -24,15 +24,14 @@ public abstract class Move {
     private int manaCost;
     private ActionTypes actionType;
 
-
     //to be implemented for each subclass
     public abstract void invoke();
 
-    public void getManaCost() {
+    public int getManaCost() {
         return manaCost;
     }
 
-    public void getActionType () { 
+    public ActionTypes getActionType() { 
         return actionType;
     }
 
