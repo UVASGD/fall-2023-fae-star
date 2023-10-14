@@ -1,11 +1,12 @@
-public class Club extends Move {
+public class Club : Move
+{
 
-    public void Club() {
-        super(0, Move.ActionTypes.SE);
-    }
+    public Club() : base(0, Move.ActionTypes.SE) { }
     
     //to be implemented 
-    public void invoke() { 
+    public override void invoke()
+    { 
+
     }
 
 }

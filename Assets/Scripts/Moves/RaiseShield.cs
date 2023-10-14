@@ -1,11 +1,12 @@
-public class RaiseShield extends Move {
+public class RaiseShield : Move
+{
 
-    public void RaiseShield() {
-        super(3, Move.ActionTypes.PB);
-    }
+    public RaiseShield() : base(3, Move.ActionTypes.PB) { }
     
     //to be implemented 
-    public void invoke() { 
+    public override void invoke()
+    { 
+
     }
 
 }

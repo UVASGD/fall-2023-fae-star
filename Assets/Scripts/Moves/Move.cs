@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Move {
+public abstract class Move
+{
     /*
      * Action Type codex
      * SE = Single Target Enemy Focused Action
@@ -19,12 +20,13 @@ public abstract class Move {
         SA,
         MA,
         PB,
-        none,
     }
+
+    // Instance variables
     private int manaCost;
     private ActionTypes actionType;
 
-    public void Move(int manaCost, ActionTypes actionType) {
+    public Move(int manaCost, ActionTypes actionType) {
         this.manaCost = manaCost;
         this.actionType = actionType;
     }

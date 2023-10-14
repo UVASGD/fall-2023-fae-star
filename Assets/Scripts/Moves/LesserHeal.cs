@@ -1,11 +1,11 @@
-public class LesserHeal extends Move {
+public class LesserHeal : Move
+{
 
-    public class LesserHeal() {
-        super(3, Move.ActionTypes.SA);
-    }
+    public LesserHeal() : base(3, Move.ActionTypes.SA) { }
 
     //to be implemented
-    public void invoke() {
+    public override void invoke()
+    {
 
     }
 }

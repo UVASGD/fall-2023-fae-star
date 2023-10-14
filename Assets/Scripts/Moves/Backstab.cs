@@ -1,11 +1,11 @@
-public class Backstab extends Move {
+public class Backstab : Move
+{
 
-    public void Backstab() {
-        super(3, Move.ActionTypes.SE);
-    }
+    public Backstab() : base(3, Move.ActionTypes.SE) { }
     
     //to be implemented 
-    public void invoke() { 
-    }
+    public override void invoke()
+    { 
 
+    }
 }

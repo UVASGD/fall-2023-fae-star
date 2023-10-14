@@ -1,11 +1,11 @@
-public class Blazing extends Move {
+public class Blazing : Move
+{
 
-    public class Blazing() {
-        super(6, Move.ActionTypes.PB);
-    }
+    public Blazing() : base(6, Move.ActionTypes.PB) { }
 
     //to be implemented
-    public void invoke() {
+    public override void invoke()
+    {
 
     }
 }

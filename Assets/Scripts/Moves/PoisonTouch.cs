@@ -1,11 +1,12 @@
-public class PoisonTouch extends Move {
+public class PoisonTouch : Move
+{
 
-    public void PoisonTouch() {
-        super(0, Move.ActionTypes.SE);
-    }
+    public PoisonTouch() : base(0, Move.ActionTypes.SE) { }
     
     //to be implemented 
-    public void invoke() { 
+    public override void invoke()
+    {
+        
     }
 
 }

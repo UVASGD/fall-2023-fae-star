@@ -110,8 +110,13 @@ public class TransitionManager : MonoBehaviour
                 break;
 
             case GlobalStateTracker.States.ActionMenuing:
-                KeyValuePair<string, (int, Move.ActionTypes, Action, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
-                switch (selectedMove.Value.Item2)
+                KeyValuePair<string, (Move, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
+                if(selectedMove.Value.Item1 == null)
+                {
+                    reverseTransition();
+                    break;
+                }
+                switch (selectedMove.Value.Item1.getActionType())
                 {
                     case Move.ActionTypes.SE: // Single target enemy action selected
                         GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
@@ -125,22 +130,18 @@ public class TransitionManager : MonoBehaviour
                         GlobalStateTracker.currentAction = selectedMove.Key;
                         if (GlobalStateTracker.currentEntity == characters[0])
                         {
-                            selections[7].reverseActivation = transitionsObjects[6];
                             transitions[6].Transition(selected);
                         }
                         else if (GlobalStateTracker.currentEntity == characters[1])
                         {
-                            selections[7].reverseActivation = transitionsObjects[7];
                             transitions[7].Transition(selected);
                         }
                         else if (GlobalStateTracker.currentEntity == characters[2])
                         {
-                            selections[7].reverseActivation = transitionsObjects[8];
                             transitions[8].Transition(selected);
                         }
                         else
                         {
-                            selections[7].reverseActivation = transitionsObjects[9];
                             transitions[9].Transition(selected);
                         }
 
@@ -150,11 +151,6 @@ public class TransitionManager : MonoBehaviour
                     case Move.ActionTypes.ME:
                     case Move.ActionTypes.MA:
                         // Should just Act here as there is no need to select anyone
-                        reverseTransition();
-                        break;
-
-                    case Move.ActionTypes.none:
-                        // Return back to Action Select Menu
                         reverseTransition();
                         break;
 
@@ -184,19 +180,32 @@ public class TransitionManager : MonoBehaviour
             case GlobalStateTracker.States.ActionSelect:
                 GlobalStateTracker.battleState = GlobalStateTracker.States.CharacterSelect;
                 GlobalStateTracker.currentEntity = null;
+                transitionsObjects[0].SetActive(true);
                 transitions[0].ReverseTransition();
                 break;
 
             case GlobalStateTracker.States.ActionMenuing:
                 GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
-                if (GlobalStateTracker.currentEntity == characters[0]) 
+                if (GlobalStateTracker.currentEntity == characters[0])
+                {
+                    transitionsObjects[1].SetActive(true);
                     transitions[1].ReverseTransition();
-                else if (GlobalStateTracker.currentEntity == characters[1]) 
+                }
+                else if (GlobalStateTracker.currentEntity == characters[1])
+                {
+                    transitionsObjects[2].SetActive(true);
                     transitions[2].ReverseTransition();
-                else if (GlobalStateTracker.currentEntity == characters[2]) 
+                }
+                else if (GlobalStateTracker.currentEntity == characters[2])
+                {
+                    transitionsObjects[3].SetActive(true);
                     transitions[3].ReverseTransition();
-                else 
+                }
+                else
+                {
+                    transitionsObjects[4].SetActive(true);
                     transitions[4].ReverseTransition();
+                }
                 break;
 
             case GlobalStateTracker.States.ItemMenuing:
@@ -208,21 +217,34 @@ public class TransitionManager : MonoBehaviour
                 if (GlobalStateTracker.currentAction != null)
                 {
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionMenuing;
-                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == Move.ActionTypes.SE)
+                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1.getActionType() == Move.ActionTypes.SE)
                     {
                         GlobalStateTracker.currentAction = null;
+                        transitionsObjects[5].SetActive(true);
                         transitions[5].ReverseTransition();
                     }
-                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == Move.ActionTypes.SA)
+                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1.getActionType() == Move.ActionTypes.SA)
                     {
                         if (GlobalStateTracker.currentEntity == characters[0])
+                        {
+                            transitionsObjects[6].SetActive(true);
                             transitions[6].ReverseTransition();
+                        }
                         else if (GlobalStateTracker.currentEntity == characters[1])
+                        {
+                            transitionsObjects[7].SetActive(true);
                             transitions[7].ReverseTransition();
+                        }
                         else if (GlobalStateTracker.currentEntity == characters[2])
+                        {
+                            transitionsObjects[8].SetActive(true);
                             transitions[8].ReverseTransition();
+                        }
                         else
+                        {
+                            transitionsObjects[9].SetActive(true);
                             transitions[9].ReverseTransition();
+                        }
                     }
                 }
                 break;

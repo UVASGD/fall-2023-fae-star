@@ -1,11 +1,12 @@
-public class Knife extends Move {
+public class Knife : Move
+{
 
-    public void Knife() {
-        super(0, Move.ActionTypes.SE);
-    }
+    public Knife() : base(0, Move.ActionTypes.SE) { }
     
     //to be implemented 
-    public void invoke() { 
+    public override void invoke()
+    { 
+
     }
 
 }

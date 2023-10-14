@@ -1,11 +1,11 @@
-public class LesserFlame extends Move {
+public class LesserFlame : Move
+{
 
-    public class LesserFlame() {
-        super(4, Move.ActionTypes.SE);
-    }
+    public LesserFlame() : base(4, Move.ActionTypes.SE) { }
 
     //to be implemented
-    public void invoke() {
+    public override void invoke()
+    {
 
     }
 }

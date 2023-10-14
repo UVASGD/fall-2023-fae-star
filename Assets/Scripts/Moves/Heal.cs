@@ -1,11 +1,11 @@
-public class Heal extends Move {
+public class Heal : Move
+{
 
-    public class Heal() {
-        super(5, Move.ActionTypes.SA);
-    }
+    public Heal() : base(5, Move.ActionTypes.SA) { }
 
     //to be implemented
-    public void invoke() {
+    public override void invoke()
+    {
 
     }
 }

@@ -1,11 +1,12 @@
-public class Slash extends Move {
+public class Slash : Move
+{
 
-    public void Slash() {
-        super(0, Move.ActionTypes.SE);
-    }
+    public Slash() : base(0, Move.ActionTypes.SE) { }
     
     //to be implemented 
-    public void invoke() { 
+    public override void invoke()
+    {
+        
     }
 
 }
