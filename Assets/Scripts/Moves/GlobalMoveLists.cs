@@ -25,7 +25,7 @@ public class GlobalMoveLists
         PB,
         none,
     }
-
+    
     public static List<Dictionary<string, (int, ActionTypes, Action, int)>> MoveList = new List<Dictionary<string, (int, ActionTypes, Action, int)>>
         { //Mage's list comes first
 	        new Dictionary<string, (int, ActionTypes, Action, int)> 
