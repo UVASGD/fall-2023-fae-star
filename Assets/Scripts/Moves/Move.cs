@@ -24,6 +24,11 @@ public abstract class Move {
     private int manaCost;
     private ActionTypes actionType;
 
+    public void Move(int manaCost, ActionTypes actionType) {
+        this.manaCost = manaCost;
+        this.actionType = actionType;
+    }
+
     //to be implemented for each subclass
     public abstract void invoke();
 
