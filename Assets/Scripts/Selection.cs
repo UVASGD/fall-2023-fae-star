@@ -8,7 +8,6 @@ public class Selection : MonoBehaviour
     [SerializeField] public List<GameObject> items;
     [SerializeField] public List<int> listSizes;
     [SerializeField] GameObject outliner;
-    [SerializeField] public GameObject reverseActivation;
     [SerializeField] GameObject[] swapActivators;
     private List<IActivator> iSwapActivators = new List<IActivator>();
 
@@ -156,11 +155,7 @@ public class Selection : MonoBehaviour
 
     public void ReverseSelect()
     {
-        if (reverseActivation != null)
-        {
-            reverseActivation.SetActive(true);
-            TransitionManager.reverseTransition();
-        }
+        TransitionManager.reverseTransition();
     }
 
 

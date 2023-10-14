@@ -29,25 +29,30 @@ public class LoadMoveList : MonoBehaviour
 
             // Loop through the Dictionary
             int at = 0;
-            foreach (KeyValuePair<string, (int, GlobalMoveLists.ActionTypes, Action, int)> kvp in GlobalMoveLists.MoveList[i])
+            foreach (KeyValuePair<string, (Move, int)> kvp in GlobalMoveLists.MoveList[i])
             {
                 // Instantiate object with parent as the transform of the content box
                 GameObject currentItem = Instantiate(actionSelectItemPrefab, content);
 
                 // Set up the values of each action item in the list
                 currentItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = kvp.Key;
-                int manaCost = kvp.Value.Item1;
-                if (kvp.Value.Item2 != GlobalMoveLists.ActionTypes.none)
+                int manaCost = 0;
+                if (kvp.Value.Item1 != null)
+                {
                     currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (manaCost + "mp");
+                    manaCost = kvp.Value.Item1.getManaCost();
+                }
                 else
+                {
                     currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+                }
                 currentItem.transform.localPosition = new Vector3(15, -15 - actionSelectTransform.sizeDelta.y * at, 0);
                 
                 // Setting up the event trigger stuff
                 EventTrigger trigger = currentItem.GetComponent<EventTrigger>();
                 EventTrigger.Entry hoverTrigger = new EventTrigger.Entry();
                 hoverTrigger.eventID = EventTriggerType.PointerEnter;
-                hoverTrigger.callback.AddListener((eventData) => { selection.SetSelect(kvp.Value.Item4); });
+                hoverTrigger.callback.AddListener((eventData) => { selection.SetSelect(kvp.Value.Item2); });
                 trigger.triggers.Add(hoverTrigger);
                 EventTrigger.Entry clickTrigger = new EventTrigger.Entry();
                 clickTrigger.eventID = EventTriggerType.PointerClick;
