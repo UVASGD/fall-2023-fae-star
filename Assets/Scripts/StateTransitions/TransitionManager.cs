@@ -110,17 +110,17 @@ public class TransitionManager : MonoBehaviour
                 break;
 
             case GlobalStateTracker.States.ActionMenuing:
-                KeyValuePair<string, (int, GlobalMoveLists.ActionTypes, Action, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
+                KeyValuePair<string, (int, Move.ActionTypes, Action, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
                 switch (selectedMove.Value.Item2)
                 {
-                    case GlobalMoveLists.ActionTypes.SE: // Single target enemy action selected
+                    case Move.ActionTypes.SE: // Single target enemy action selected
                         GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
                         GlobalStateTracker.currentAction = selectedMove.Key;
                         transitions[5].Transition(selected);
 
                         break;
 
-                    case GlobalMoveLists.ActionTypes.SA: // Single target ally action selected
+                    case Move.ActionTypes.SA: // Single target ally action selected
                         GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
                         GlobalStateTracker.currentAction = selectedMove.Key;
                         if (GlobalStateTracker.currentEntity == characters[0])
@@ -146,14 +146,14 @@ public class TransitionManager : MonoBehaviour
 
                         break;
 
-                    case GlobalMoveLists.ActionTypes.PB:
-                    case GlobalMoveLists.ActionTypes.ME:
-                    case GlobalMoveLists.ActionTypes.MA:
+                    case Move.ActionTypes.PB:
+                    case Move.ActionTypes.ME:
+                    case Move.ActionTypes.MA:
                         // Should just Act here as there is no need to select anyone
                         reverseTransition();
                         break;
 
-                    case GlobalMoveLists.ActionTypes.none:
+                    case Move.ActionTypes.none:
                         // Return back to Action Select Menu
                         reverseTransition();
                         break;
@@ -208,12 +208,12 @@ public class TransitionManager : MonoBehaviour
                 if (GlobalStateTracker.currentAction != null)
                 {
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionMenuing;
-                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == GlobalMoveLists.ActionTypes.SE)
+                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == Move.ActionTypes.SE)
                     {
                         GlobalStateTracker.currentAction = null;
                         transitions[5].ReverseTransition();
                     }
-                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == GlobalMoveLists.ActionTypes.SA)
+                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item2 == Move.ActionTypes.SA)
                     {
                         if (GlobalStateTracker.currentEntity == characters[0])
                             transitions[6].ReverseTransition();

@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Move {
 
-    // For now I am going to hard code this, but we might want to change it sometime in the future.
-    // The setup for this list is (int, Action, int) => (Mana Cost, ActionType, Action on Select, Position in Selection List)
+public abstract class Move {
     /*
      * Action Type codex
      * SE = Single Target Enemy Focused Action
@@ -26,15 +24,14 @@ public class Move {
     int manaCost;
     ActionTypes actionType;
 
-    abstract static void invoke() {
-        //to be implemented for each subclass
-    }
-    protected static void setManaCost(int manaCostValue) {
+    //to be implemented for each subclass
+    public abstract void invoke();
+
+    public void setManaCost(int manaCostValue) {
         manaCost = manaCostValue;
     }
 
-
-    protected static void setActionOnSelect (Action actionValue) { 
+    public void setActionOnSelect (ActionTypes actionValue) { 
         actionType = actionValue;
     }
 
