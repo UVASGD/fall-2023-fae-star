@@ -39,8 +39,8 @@ public class LoadMoveList : MonoBehaviour
                 int manaCost = 0;
                 if (kvp.Value.Item1 != null)
                 {
-                    currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (manaCost + "mp");
                     manaCost = kvp.Value.Item1.getManaCost();
+                    currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (manaCost + "mp");
                 }
                 else
                 {
