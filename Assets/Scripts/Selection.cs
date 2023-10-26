@@ -59,6 +59,7 @@ public class Selection : MonoBehaviour
         {
             onSwap();
         }
+        ScoreManager.instance.resetCounter();
     }
 
     // Update is called once per frame
@@ -146,6 +147,7 @@ public class Selection : MonoBehaviour
             selectionActivations[selected].SetActive(true);
             selectionActivations[selected].SendMessage("Transition", selected);
             gameObject.SetActive(false);
+            ScoreManager.instance.subtractActions();
         }
         else
         {
@@ -162,8 +164,6 @@ public class Selection : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
-
     // Helper method to determine current selection
     private int currentlySelected()
     {
