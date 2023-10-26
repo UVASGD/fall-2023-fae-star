@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class Selection : MonoBehaviour
 {
-    [SerializeField] List<GameObject> items;
-    [SerializeField] List<int> listSizes;
+    [SerializeField] public List<GameObject> items;
+    [SerializeField] public List<int> listSizes;
     [SerializeField] GameObject outliner;
-    [SerializeField] GameObject[] selectionActivations;
-    [SerializeField] GameObject reverseActivation;
     [SerializeField] GameObject[] swapActivators;
-    List<GenericActivator> iSwapActivators;
+    private List<IActivator> iSwapActivators = new List<IActivator>();
 
     private List<List<GameObject>> listItems;
     private int x = 0;
@@ -22,10 +20,9 @@ public class Selection : MonoBehaviour
     {
         rtf = outliner.GetComponent<RectTransform>();
 
-        iSwapActivators = new List<GenericActivator>();
         for (int i = 0; i < swapActivators.Length; i++)
         {
-            iSwapActivators.Add(swapActivators[i].GetComponent(typeof(GenericActivator)) as GenericActivator);
+            iSwapActivators.Add(swapActivators[i].GetComponent(typeof(IActivator)) as IActivator);
         }
 
         // List instantiation bc Unity is stupid and doesn't allow serialization of 2D arrays
@@ -51,13 +48,18 @@ public class Selection : MonoBehaviour
         adjustOutline();
     }
 
+    public void AddSwapActivators(IActivator activator)
+    {
+        iSwapActivators.Add(activator);
+    }
+
     public void ResetSelection()
     {
         x = 0;
         y = 0;
         if (listItems != null)
         {
-            onSwap();
+            onSwap(0);
         }
         ScoreManager.instance.resetCounter();
     }
@@ -71,27 +73,27 @@ public class Selection : MonoBehaviour
             x += listItems.Count;
             x %= listItems.Count;
             y = Mathf.Min(y, listItems[x].Count);
-            onSwap();
+            onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             x++;
             x %= listItems.Count;
             y = Mathf.Min(y, listItems[x].Count);
-            onSwap();
+            onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             y--;
             y += listItems[x].Count;
             y %= listItems[x].Count;
-            onSwap();
+            onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             y++;
             y %= listItems[x].Count;
-            onSwap();
+            onSwap(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -105,19 +107,19 @@ public class Selection : MonoBehaviour
     }
 
     // Activates all activators related to swapping to the current option
-    void onSwap()
+    void onSwap(int swapSource) //swapSource 0 means keyboard, swapSource 1 means mouse
     {
-        if(iSwapActivators.Count != 0)
+        adjustOutline();
+
+        if (iSwapActivators.Count != 0)
         {
             int currentSelection = currentlySelected();
 
-            foreach (GenericActivator activator in iSwapActivators)
+            foreach (IActivator activator in iSwapActivators)
             {
-                activator.activate(currentSelection);
+                activator.Activate(currentSelection, swapSource);
             }
         }
-
-        adjustOutline();
     }
 
     // Readjusts the outline to surround currently selected object
@@ -133,36 +135,29 @@ public class Selection : MonoBehaviour
     // Allows for external signals to swap the selection, treats objects as if they were non-zero indexed (because hackey solution)
     public void SetSelect(int xy)
     {
-        x = xy / 10 - 1;
-        y = xy % 10 - 1;
-        onSwap();
+        if (gameObject.activeInHierarchy == true)
+        {
+            x = xy / 10 - 1;
+            y = xy % 10 - 1;
+            onSwap(1);
+        }
     }
 
     // Activates when player confirms selection
     public void Select()
     {
-        int selected = currentlySelected();
-        if (selectionActivations[selected] != null)
+        if (gameObject.activeInHierarchy == true)
         {
-            selectionActivations[selected].SetActive(true);
-            selectionActivations[selected].SendMessage("Transition", selected);
+            int selected = currentlySelected();
             gameObject.SetActive(false);
             ScoreManager.instance.subtractActions();
-        }
-        else
-        {
-            ReverseSelect();
+            TransitionManager.processTransition(selected);
         }
     }
 
     public void ReverseSelect()
     {
-        if (reverseActivation != null)
-        {
-            reverseActivation.SetActive(true);
-            reverseActivation.SendMessage("ReverseTransition");
-            gameObject.SetActive(false);
-        }
+        TransitionManager.reverseTransition();
     }
     // Helper method to determine current selection
     private int currentlySelected()
