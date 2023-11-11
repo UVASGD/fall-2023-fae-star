@@ -3960,7 +3960,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5946a8081f05c9449aab747ec3a19e3e, type: 2}
   - {fileID: 2100000, guid: 2621e8d82e8508e4faaec33e71387473, type: 2}
   - {fileID: 2100000, guid: 4f9a194d4ed50b14d83faad27bfc7c61, type: 2}
-  - {fileID: 2100000, guid: 4f9a194d4ed50b14d83faad27bfc7c61, type: 2}
+  - {fileID: 2100000, guid: b88a4d3e4c0835a4a9a28b0814e021bd, type: 2}
   UITopImage: {fileID: 164187891}
 --- !u!224 &824474033 stripped
 RectTransform:
