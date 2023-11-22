@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterSelectTransition : MonoBehaviour, Transition
+public class CharacterSelectTransition : MonoBehaviour, ITransition
 {
     // These reference the specific character objects to be transitioned
     [SerializeField] GameObject[] characterPortraits;
