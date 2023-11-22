@@ -13,7 +13,7 @@ public class LoadMoveList : MonoBehaviour
     [SerializeField] RectTransform fillImage;
 
     // Start is called before the first frame update
-    void Awake()
+    public void Awake()
     {
         for(int i = 0; i < actionLists.Count; i++)
         {
