@@ -16,6 +16,7 @@ public class TransitionManager : MonoBehaviour
      * 1-4: Action Select -> Respective Character Actions
      * 5: Character Actions -> Single Target Enemy Select
      * 6-9: Character Actions -> Single Target Assist Select
+     * 10-13: Item Select -> Respective Character Items
      */
     [SerializeField] GameObject[] serializedTransitionsObject;
     private static List<GameObject> transitionsObjects;
@@ -27,6 +28,7 @@ public class TransitionManager : MonoBehaviour
      * 2-5: Action List Selects
      * 6: Enemy Select
      * 7: Ally Select
+     * 8: Item Select
      */
     [SerializeField] Selection[] selectionObjects;
     private static List<Selection> selections;
