@@ -11,6 +11,9 @@ public class TransitionManager : MonoBehaviour
     private static List<GameObject> characters;
     private static GameObject[] enemies;
 
+    [SerializeField] GameObject[] portraitObjects;
+    public static Dictionary<GameObject, GameObject> portraits;
+
     /*
      * Transition Orders:
      * 0: Character Select -> Action Select
@@ -66,6 +69,15 @@ public class TransitionManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             enemies[i] = GameObject.Find("Enemy" + (i + 1));
+        }
+        portraits = new Dictionary<GameObject, GameObject>();
+        for(int i = 0; i < characters.Count; i++)
+        {
+            portraits[characters[i]] = portraitObjects[i];
+        }
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            portraits[enemies[i]] = portraitObjects[i + 4];
         }
         manabar = manabarObject;
     }
@@ -324,5 +336,10 @@ public class TransitionManager : MonoBehaviour
                 break;
         }
         Debug.Log(GlobalStateTracker.toString());
+    }
+
+    public static void ResetFSM()
+    {
+
     }
 }

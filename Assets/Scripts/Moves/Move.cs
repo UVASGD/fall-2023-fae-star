@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public static bool animFinished;
+
     /*
      * Action Type codex
      * SE = Single Target Enemy Focused Action
@@ -21,5 +23,15 @@ public class Move : MonoBehaviour
         MA,
         PB,
         NA,
+    }
+
+    protected float power;
+    protected float critRate;
+
+    protected void Update()
+    {
+        Destroy(this.gameObject);
+        animFinished = false;
+        TransitionManager.ResetFSM();
     }
 }

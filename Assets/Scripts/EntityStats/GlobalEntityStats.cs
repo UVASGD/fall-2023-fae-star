@@ -28,4 +28,17 @@ public class GlobalEntityStats
                 break;
         }
     }
+
+    public static int damageCalcAttack(int character, float attackPower, float critRate)
+    {
+        float baseValue = characters[character].attack * attackPower;
+        float critChance = characters[character].technique * critRate / 2;
+
+        if(Random.Range(0, 100) < critChance)
+        {
+            baseValue *= 2;
+        }
+
+        return (int) (baseValue * Random.Range(0.8f, 1.2f));
+    }
 }
