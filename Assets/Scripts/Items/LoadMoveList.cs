@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class LoadMoveList : MonoBehaviour
+public class LoadItemList : MonoBehaviour
 {
     [SerializeField] List<GameObject> actionLists;
+    [SerializeField] List<GameObject> itemLists;
     [SerializeField] GameObject actionSelectItemPrefab;
+    [SerializeField] GameObject itemSelectItemPrefab;
     [SerializeField] RectTransform backingCostFillImage;
     [SerializeField] RectTransform fillImage;
 

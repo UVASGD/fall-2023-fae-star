@@ -28,7 +28,7 @@ public class TransitionManager : MonoBehaviour
      * 2-5: Action List Selects
      * 6: Enemy Select
      * 7: Ally Select
-     * 8: Item Select
+     * 8-11: Item List Selects
      */
     [SerializeField] Selection[] selectionObjects;
     private static List<Selection> selections;
@@ -98,8 +98,16 @@ public class TransitionManager : MonoBehaviour
                 }
                 else if (selected == 1) // Item button is selected
                 {
-                    //GlobalStateTracker.battleState = GlobalStateTracker.States.ItemMenuing;
                     // TODO Implement Item Menu, for now we will just do nothing
+                    GlobalStateTracker.battleState = GlobalStateTracker.States.ItemMenuing;
+                    if (GlobalStateTracker.currentEntity == characters[0])
+                        transitions[10].Transition(selected);
+                    else if (GlobalStateTracker.currentEntity == characters[1])
+                        transitions[11].Transition(selected);
+                    else if (GlobalStateTracker.currentEntity == characters[2])
+                        transitions[12].Transition(selected);
+                    else
+                        transitions[13].Transition(selected);
                 }
                 else if (selected == 2) // Guard button is selected
                 {
@@ -108,6 +116,53 @@ public class TransitionManager : MonoBehaviour
                 else // Back button is selected
                 {
                     reverseTransition();
+                }
+                break;
+            case GlobalStateTracker.States.ItemMenuing:
+                KeyValuePair<string, (Item, int)> selectedItem = GlobalItemLists.ItemList[characterIndex].ElementAt(selected);
+                if (selectedItem.Value.Item1 == null)
+                {
+                    reverseTransition();
+                    break;
+                }
+                switch (selectedItem.Value.Item1.getActionType())
+                {
+                    case Item.ActionTypes.SE: // Single target enemy action selected
+                        GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
+                        GlobalStateTracker.currentAction = selectedItem.Key;
+                        transitions[5].Transition(selected);
+
+                        break;
+
+                    case Item.ActionTypes.SA: // Single target ally action selected
+                        GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
+                        GlobalStateTracker.currentAction = selectedItem.Key;
+                        if (GlobalStateTracker.currentEntity == characters[0])
+                        {
+                            transitions[6].Transition(selected);
+                        }
+                        else if (GlobalStateTracker.currentEntity == characters[1])
+                        {
+                            transitions[7].Transition(selected);
+                        }
+                        else if (GlobalStateTracker.currentEntity == characters[2])
+                        {
+                            transitions[8].Transition(selected);
+                        }
+                        else
+                        {
+                            transitions[9].Transition(selected);
+                        }
+
+                        break;
+
+                    case Item.ActionTypes.PB:
+                    case Item.ActionTypes.ME:
+                    case Item.ActionTypes.MA:
+                        // Should just Act here as there is no need to select anyone
+                        reverseTransition();
+                        break;
+
                 }
                 break;
 
@@ -213,6 +268,26 @@ public class TransitionManager : MonoBehaviour
             case GlobalStateTracker.States.ItemMenuing:
                 GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
                 // TODO Implement Item Menu
+                if (GlobalStateTracker.currentEntity == characters[0])
+                {
+                    transitionsObjects[10].SetActive(true);
+                    transitions[10].ReverseTransition();
+                }
+                else if (GlobalStateTracker.currentEntity == characters[1])
+                {
+                    transitionsObjects[11].SetActive(true);
+                    transitions[11].ReverseTransition();
+                }
+                else if (GlobalStateTracker.currentEntity == characters[2])
+                {
+                    transitionsObjects[12].SetActive(true);
+                    transitions[12].ReverseTransition();
+                }
+                else
+                {
+                    transitionsObjects[13].SetActive(true);
+                    transitions[13].ReverseTransition();
+                }
                 break;
 
             case GlobalStateTracker.States.PostActionEntitySelect:
