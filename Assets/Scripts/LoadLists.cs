@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class LoadLists : MonoBehaviour
+public class LoadMoveAndItemList : MonoBehaviour
 {
     [SerializeField] List<GameObject> actionLists;
     [SerializeField] List<GameObject> itemLists;
