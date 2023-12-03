@@ -120,4 +120,9 @@ public class EnemySelectTransition : MonoBehaviour, ITransition
     {
         this.selectedCharacter = selected;
     }
+
+    public void reset()
+    {
+        firstActivation = false;
+    }
 }

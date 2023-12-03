@@ -186,4 +186,10 @@ public class CharacterSelectTransition : MonoBehaviour, ITransition
         }
         frameCount = 0;
     }
+
+    public void reset()
+    {
+        firstActivation = false;
+        selectedCharacter = 0;
+    }
 }

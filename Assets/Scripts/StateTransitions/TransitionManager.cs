@@ -22,6 +22,7 @@ public class TransitionManager : MonoBehaviour
      * 6-9: Character Actions -> Single Target Assist Select
      * 10-13: Item Select -> Respective Character Items
      * 14 Single Target Enemy Select -> invoke()
+     * 15 Reset the FSM
      */
     [SerializeField] GameObject[] serializedTransitionsObject;
     private static List<GameObject> transitionsObjects;
@@ -340,6 +341,6 @@ public class TransitionManager : MonoBehaviour
 
     public static void ResetFSM()
     {
-
+        transitions[15].Transition(0);
     }
 }

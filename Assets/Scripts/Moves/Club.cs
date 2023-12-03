@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Club : Move
 {
@@ -22,7 +23,9 @@ public class Club : Move
         {
             Transform info = TransitionManager.portraits[GlobalStateTracker.targetEntity].transform.Find("EntityInfo");
             Slider health = info.GetChild(0).GetComponent<Slider>();
+            TextMeshProUGUI healthValues = info.GetChild(3).GetComponent<TextMeshProUGUI>();
             health.value = Math.Max(0, health.value - GlobalEntityStats.damageCalcAttack(0, power, critRate));
+            healthValues.text = health.value + "/" + health.maxValue;
             base.Update();
         }
     }
