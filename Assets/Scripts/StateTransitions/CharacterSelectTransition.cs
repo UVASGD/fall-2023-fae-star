@@ -27,9 +27,9 @@ public class CharacterSelectTransition : MonoBehaviour, ITransition
     [SerializeField] int transitionLength;
 
     private Slider[] selectedInfoSliders;
+    private TextMeshProUGUI[] selectedSliderValues;
     private TextMeshProUGUI selectedName;
     private Slider[,] characterSliders;
-    private TextMeshProUGUI[] characterNames;
     private int selectedCharacter;
     private bool reversed;
     private bool firstActivation;
@@ -44,16 +44,19 @@ public class CharacterSelectTransition : MonoBehaviour, ITransition
             selectedInfoSliders[i] = selectedcharacterInfo.transform.GetChild(i).GetComponent<Slider>();
         }
         selectedName = selectedcharacterInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        selectedSliderValues = new TextMeshProUGUI[3];
+        for (int i = 0; i < 3; i++)
+        {
+            selectedSliderValues[i] = selectedcharacterInfo.transform.GetChild(i+4).GetComponent<TextMeshProUGUI>();
+        }
 
         characterSliders = new Slider[characterInfos.Length, 3];
-        characterNames = new TextMeshProUGUI[characterInfos.Length];
         for (int i = 0; i < characterInfos.Length; i++)
         {
             for(int j = 0; j < 3; j++)
             {
                 characterSliders[i, j] = characterInfos[i].transform.GetChild(j).GetComponent<Slider>();
             }
-            characterNames[i] = characterInfos[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -161,11 +164,14 @@ public class CharacterSelectTransition : MonoBehaviour, ITransition
 
 
         // Alters the main character info display to represent the selected character
-        selectedName.text = characterNames[selectedCharacter].text;
+        selectedName.text = GlobalEntityStats.characters[selectedCharacter].name;
         for(int i = 0; i < 3; i++)
         {
             selectedInfoSliders[i].value = characterSliders[selectedCharacter, i].value;
         }
+        selectedSliderValues[0].text = characterSliders[selectedCharacter, 0].value + "/" + characterSliders[selectedCharacter, 0].maxValue;
+        selectedSliderValues[1].text = characterSliders[selectedCharacter, 1].value + "/" + characterSliders[selectedCharacter, 1].maxValue;
+        selectedSliderValues[2].text = (int) ((float) (characterSliders[selectedCharacter, 2].value) / characterSliders[selectedCharacter, 2].maxValue * 100) + "%";
         frameCount = 0;
     }
 

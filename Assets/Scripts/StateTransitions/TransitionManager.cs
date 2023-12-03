@@ -119,7 +119,7 @@ public class TransitionManager : MonoBehaviour
                 }
                 break;
             case GlobalStateTracker.States.ItemMenuing:
-                KeyValuePair<string, (Item, int)> selectedItem = GlobalItemLists.ItemList[characterIndex].ElementAt(selected);
+                KeyValuePair<string, (Item, int)> selectedItem = GlobalItemLists.ItemList.ElementAt(selected);
                 if (selectedItem.Value.Item1 == null)
                 {
                     reverseTransition();
