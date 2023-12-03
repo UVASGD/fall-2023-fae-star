@@ -73,5 +73,7 @@ public class LoadMoveList : MonoBehaviour
                 at++;
             }
         }
+
+        Destroy(gameObject);
     }
 }

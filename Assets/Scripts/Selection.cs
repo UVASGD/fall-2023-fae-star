@@ -126,6 +126,7 @@ public class Selection : MonoBehaviour
     {
         RectTransform parentTransform = (RectTransform) listItems[x][y].transform;
         rtf.SetParent(parentTransform);
+        rtf.SetAsFirstSibling();
         rtf.localPosition = new Vector3((0.5f - parentTransform.anchorMin.x) * parentTransform.sizeDelta.x, (0.5f - parentTransform.anchorMin.y) * parentTransform.sizeDelta.y, parentTransform.position.z);
         Vector2 newSize = new Vector2(parentTransform.sizeDelta.x + (2f / 15f * 100f), parentTransform.sizeDelta.y + (2f / 15f * 100f));
         rtf.sizeDelta = newSize;
