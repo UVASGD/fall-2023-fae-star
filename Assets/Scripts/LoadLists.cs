@@ -93,7 +93,7 @@ public class LoadLists : MonoBehaviour
                 // Set up the values of each action item in the list
                 currentItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = kvp.Key;
                 int manaCost = 0;
-                if (kvp.Key != null)
+                if (kvp.Key != "Back")
                 {
                     manaCost = kvp.Value.Item2;
                     currentItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (manaCost + "mp");
