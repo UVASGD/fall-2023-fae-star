@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public class TransitionManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] characterObjects;
+    [SerializeField] Transform battleContainer;
     private static List<GameObject> characters;
+    private static GameObject[] enemies;
 
     /*
      * Transition Orders:
@@ -17,6 +18,7 @@ public class TransitionManager : MonoBehaviour
      * 5: Character Actions -> Single Target Enemy Select
      * 6-9: Character Actions -> Single Target Assist Select
      * 10-13: Item Select -> Respective Character Items
+     * 14 Single Target Enemy Select -> invoke()
      */
     [SerializeField] GameObject[] serializedTransitionsObject;
     private static List<GameObject> transitionsObjects;
@@ -38,7 +40,7 @@ public class TransitionManager : MonoBehaviour
 
     private static int characterIndex;
 
-    void Awake()
+    void Start()
     {
         transitionsObjects = new List<GameObject>();
         foreach (GameObject g in serializedTransitionsObject)
@@ -56,9 +58,14 @@ public class TransitionManager : MonoBehaviour
             selections.Add(s);
         }
         characters = new List<GameObject>();
-        foreach (GameObject g in characterObjects)
+        for(int i = 0; i < 4; i++)
         {
-            characters.Add(g);
+            characters.Add(battleContainer.GetChild(i).gameObject);
+        }
+        enemies = new GameObject[4];
+        for (int i = 0; i < 4; i++)
+        {
+            enemies[i] = GameObject.Find("Enemy" + (i + 1));
         }
         manabar = manabarObject;
     }
@@ -127,39 +134,12 @@ public class TransitionManager : MonoBehaviour
                 }
                 switch (selectedItem.Value.Item1.getActionType())
                 {
-                    case Item.ActionTypes.SE: // Single target enemy action selected
-                        GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
-                        GlobalStateTracker.currentAction = selectedItem.Key;
-                        transitions[5].Transition(selected);
-
-                        break;
-
-                    case Item.ActionTypes.SA: // Single target ally action selected
-                        GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
-                        GlobalStateTracker.currentAction = selectedItem.Key;
-                        if (GlobalStateTracker.currentEntity == characters[0])
-                        {
-                            transitions[6].Transition(selected);
-                        }
-                        else if (GlobalStateTracker.currentEntity == characters[1])
-                        {
-                            transitions[7].Transition(selected);
-                        }
-                        else if (GlobalStateTracker.currentEntity == characters[2])
-                        {
-                            transitions[8].Transition(selected);
-                        }
-                        else
-                        {
-                            transitions[9].Transition(selected);
-                        }
-
-                        break;
-
                     case Item.ActionTypes.PB:
-                    case Item.ActionTypes.ME:
                     case Item.ActionTypes.MA:
                         // Should just Act here as there is no need to select anyone
+                        GlobalStateTracker.battleState = GlobalStateTracker.States.Acting;
+                        GlobalStateTracker.currentAction = selectedItem.Key;
+                        selectedItem.Value.Item1.invoke();
                         reverseTransition();
                         break;
 
@@ -167,13 +147,13 @@ public class TransitionManager : MonoBehaviour
                 break;
 
             case GlobalStateTracker.States.ActionMenuing:
-                KeyValuePair<string, (Move, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
-                if(selectedMove.Value.Item1 == null)
+                KeyValuePair<string, (Move.ActionTypes, int, int)> selectedMove = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
+                if(selectedMove.Key == "Back")
                 {
                     reverseTransition();
                     break;
                 }
-                switch (selectedMove.Value.Item1.getActionType())
+                switch (selectedMove.Value.Item1)
                 {
                     case Move.ActionTypes.SE: // Single target enemy action selected
                         GlobalStateTracker.battleState = GlobalStateTracker.States.PostActionEntitySelect;
@@ -208,14 +188,31 @@ public class TransitionManager : MonoBehaviour
                     case Move.ActionTypes.ME:
                     case Move.ActionTypes.MA:
                         // Should just Act here as there is no need to select anyone
+                        GlobalStateTracker.battleState = GlobalStateTracker.States.Acting;
+                        GlobalStateTracker.currentAction = selectedMove.Key;
+                        GlobalMoveDictionary.invoke(GlobalStateTracker.currentAction);
                         reverseTransition();
                         break;
 
                 }
                 break;
 
-            // Should eventually move this code to GlobalStateTracker.States.PostActionEntitySelect
             case GlobalStateTracker.States.PostActionEntitySelect:
+                GlobalStateTracker.battleState = GlobalStateTracker.States.Acting;
+                switch (GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1)
+                {
+                    case Move.ActionTypes.SE:
+                        GlobalStateTracker.targetEntity = enemies[selected];
+                        ((EnemySelectTransition)transitions[14]).setSelectedCharacter(characterIndex);
+                        transitions[14].Transition(selected);
+                        break;
+                    case Move.ActionTypes.SA:
+                        GlobalStateTracker.targetEntity = characters[selected];
+                        GlobalMoveDictionary.invoke(GlobalStateTracker.currentAction);
+                        break;
+                    default:
+                        break;
+                }
                 //KeyValuePair<string, (int, GlobalMoveLists.ActionTypes, Action, int)> move = GlobalMoveLists.MoveList[characterIndex].ElementAt(selected);
                 //manabar.value -= (float) move.Value.Item1 / 10;
                 reverseTransition();
@@ -294,13 +291,13 @@ public class TransitionManager : MonoBehaviour
                 if (GlobalStateTracker.currentAction != null)
                 {
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionMenuing;
-                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1.getActionType() == Move.ActionTypes.SE)
+                    if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1 == Move.ActionTypes.SE)
                     {
                         GlobalStateTracker.currentAction = null;
                         transitionsObjects[5].SetActive(true);
                         transitions[5].ReverseTransition();
                     }
-                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1.getActionType() == Move.ActionTypes.SA)
+                    else if(GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1 == Move.ActionTypes.SA)
                     {
                         if (GlobalStateTracker.currentEntity == characters[0])
                         {

@@ -12,6 +12,7 @@ public class GlobalStateTracker
         ActionMenuing, // This state represents the state when clicked into the Action button
         ItemMenuing, // This state represents the state when clicked into the Item button
         PostActionEntitySelect, // This state represents the selctions state once a player has chosen an action or item
+        Acting,
         EnemyActions // This state represents the enemy's turn
     }
 
@@ -23,8 +24,10 @@ public class GlobalStateTracker
 
     public static string currentItem = null;
 
+    public static GameObject targetEntity = null;
+
     public static string toString()
     {
-        return $"State: {battleState}\t" + (currentEntity != null ? $"Current Entity: {currentEntity}\t" : "") + (currentAction != null ? $"CurrentAction: {currentAction}" : "");
+        return $"State: {battleState}\t" + (currentEntity != null ? $"Current Entity: {currentEntity}\t" : "") + (currentAction != null ? $"CurrentAction: {currentAction}\t" : "") + (currentItem != null ? $"Current Item: {currentItem}\t" : "") + (targetEntity != null ? $"Target Entity: {targetEntity}\t" : "");
     }
 }

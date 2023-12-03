@@ -34,6 +34,7 @@ public class LoadEntities : MonoBehaviour
             enemy.transform.SetParent(enemyLocations[i].parent);
             Destroy(enemyLocations[i].gameObject);
 
+            enemy.name = "Enemy" + (i + 1);
             enemy.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = GlobalEntityStats.enemies[i].sprite;
 
             Transform info = enemyPortraits[i].transform.GetChild(2);
@@ -63,5 +64,7 @@ public class LoadEntities : MonoBehaviour
             TextMeshProUGUI level = info.GetChild(4).GetComponent<TextMeshProUGUI>();
             level.text = "LV " + GlobalEntityStats.characters[i].level;
         }
+
+        Destroy(this.gameObject);
     }
 }

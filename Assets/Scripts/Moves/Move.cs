@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Move
+public class Move : MonoBehaviour
 {
     /*
      * Action Type codex
@@ -20,26 +20,6 @@ public abstract class Move
         SA,
         MA,
         PB,
+        NA,
     }
-
-    // Instance variables
-    private int manaCost;
-    private ActionTypes actionType;
-
-    public Move(int manaCost, ActionTypes actionType) {
-        this.manaCost = manaCost;
-        this.actionType = actionType;
-    }
-
-    //to be implemented for each subclass
-    public abstract void invoke();
-
-    public int getManaCost() {
-        return manaCost;
-    }
-
-    public ActionTypes getActionType() { 
-        return actionType;
-    }
-
 }

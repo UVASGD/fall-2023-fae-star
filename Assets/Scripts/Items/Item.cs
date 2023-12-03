@@ -20,6 +20,7 @@ public abstract class Item
         SA,
         MA,
         PB,
+        NA,
     }
 
     // Instance variables
