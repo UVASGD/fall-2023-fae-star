@@ -5125,7 +5125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5311112}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 150.56, y: -112.24987}
+  m_AnchoredPosition: {x: 150.56, y: -112.24984}
   m_SizeDelta: {x: -301.1, y: -65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1022985541
@@ -5872,9 +5872,6 @@ MonoBehaviour:
   - {fileID: 1223054429}
   - {fileID: 1795483829}
   - {fileID: 1580622339}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   manabarObject: {fileID: 0}
 --- !u!1 &1124529436
 GameObject:
@@ -7443,7 +7440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5311112}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 150.56, y: -72.249886}
+  m_AnchoredPosition: {x: 150.56, y: -72.249855}
   m_SizeDelta: {x: -301.1, y: -65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364022280
