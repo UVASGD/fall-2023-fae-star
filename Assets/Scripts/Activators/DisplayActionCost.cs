@@ -25,7 +25,6 @@ public class DisplayActionCost : MonoBehaviour, IActivator
     public void Activate(int activationStyle, int source)
     {
         if(activationStyle != actionListIndex) return;
-        print("ran");
         active = true;
 
         //Make the flashing "cost" bar keep the width of the original

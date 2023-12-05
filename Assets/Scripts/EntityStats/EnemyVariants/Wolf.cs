@@ -13,7 +13,10 @@ public class Wolf : Enemy
         this.attack = (int) (level * 0.5f);
         this.magicAttack = 0;
         this.technique = level;
-        this.attack = (int)(level * 0.3f);
+        this.defense = (int)(level * 0.3f);
+        this.magicDefense = 0;
         this.erruptionMeter = 5;
+        this.moves = new string[1];
+        this.moves[0] = "Wolf Bite";
     }
 }

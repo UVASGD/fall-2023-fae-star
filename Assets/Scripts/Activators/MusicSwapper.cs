@@ -38,7 +38,8 @@ public class MusicSwapper : MonoBehaviour, IActivator
 
     public void Activate(int activationStyle, int source)
     {
-        selectedSong = activationStyle;
+        if(activationStyle < songs.Length)
+            selectedSong = activationStyle;
     }
 
     public void Deactivate(int activationStyle, int source)

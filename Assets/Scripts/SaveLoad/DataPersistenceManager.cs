@@ -31,7 +31,8 @@ public class DataPersistenceManager : MonoBehaviour
     private void Start() 
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        // Fuck it we hard code this shit
+        this.dataPersistenceObjects = new List<IDataPersistence>();
         this.dataPersistenceObjects.Add(new GlobalMoveLists());
         this.saveData = new SaveData();
     }
@@ -39,7 +40,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame() 
     {
         this.saveData = new SaveData();
-        dataHandler.Save(saveData);
+        dataHandler.Save(this.saveData);
         LoadGame();
     }
 
@@ -68,23 +69,15 @@ public class DataPersistenceManager : MonoBehaviour
         // pass the data to other scripts so they can update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects) 
         {
-            dataPersistenceObj.SaveData(saveData);
+            dataPersistenceObj.SaveData(this.saveData);
         }
 
         // save that data to a file using the data handler
-        dataHandler.Save(saveData);
+        dataHandler.Save(this.saveData);
     }
 
     private void OnApplicationQuit() 
     {
         SaveGame();
-    }
-
-    private List<IDataPersistence> FindAllDataPersistenceObjects() 
-    {
-        IEnumerable<IDataPersistence> persistenceObjects = FindObjectsOfType<MonoBehaviour>()
-            .OfType<IDataPersistence>();
-
-        return new List<IDataPersistence>(persistenceObjects);
     }
 }

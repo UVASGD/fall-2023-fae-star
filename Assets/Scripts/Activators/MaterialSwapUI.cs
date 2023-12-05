@@ -7,7 +7,6 @@ public class MaterialSwapUI : MonoBehaviour, IActivator
 {
     [SerializeField] GameObject toSwap;
     [SerializeField] List<Material> materials;
-    [SerializeField] Image UITopImage;
 
     private Image img;
 
@@ -21,8 +20,6 @@ public class MaterialSwapUI : MonoBehaviour, IActivator
         if (activationStyle < materials.Count)
         {
             img.material = materials[activationStyle];
-
-            UITopImage.color = materials[activationStyle].GetColor("_Color");
         }
     }
 

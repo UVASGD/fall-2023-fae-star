@@ -56,6 +56,8 @@ public class LoadEntities : MonoBehaviour
             Slider health = info.GetChild(0).GetComponent<Slider>();
             health.maxValue = GlobalEntityStats.characters[i].maxHealth;
             health.value = health.maxValue;
+            TextMeshProUGUI healthNumbers = info.GetChild(5).GetComponent<TextMeshProUGUI>();
+            healthNumbers.text = " " + health.value + "/" + health.maxValue;
             Slider mana = info.GetChild(1).GetComponent<Slider>();
             mana.maxValue = GlobalEntityStats.characters[i].maxMana;
             mana.value = mana.maxValue;

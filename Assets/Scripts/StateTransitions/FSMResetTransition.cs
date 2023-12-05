@@ -81,6 +81,7 @@ public class FSMResetTransition : MonoBehaviour, ITransition
                 GlobalStateTracker.currentItem = null;
                 GlobalStateTracker.targetEntity = null;
                 activated = false;
+                TransitionManager.FSMResetCallback();
             }
 
             // Increment Frame Count

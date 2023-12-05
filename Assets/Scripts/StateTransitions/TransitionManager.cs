@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TransitionManager : MonoBehaviour
 {
     [SerializeField] Transform battleContainer;
-    private static List<GameObject> characters;
-    private static GameObject[] enemies;
+    public static List<GameObject> characters;
+    public static GameObject[] enemies;
 
     [SerializeField] GameObject[] portraitObjects;
     public static Dictionary<GameObject, GameObject> portraits;
@@ -23,6 +24,7 @@ public class TransitionManager : MonoBehaviour
      * 10-13: Item Select -> Respective Character Items
      * 14 Single Target Enemy Select -> invoke()
      * 15 Reset the FSM
+     * 16 Start the Enemy turn
      */
     [SerializeField] GameObject[] serializedTransitionsObject;
     private static List<GameObject> transitionsObjects;
@@ -38,9 +40,14 @@ public class TransitionManager : MonoBehaviour
      */
     [SerializeField] Selection[] selectionObjects;
     private static List<Selection> selections;
-    // change later to use global storage
-    [SerializeField] Slider manabarObject;
-    private static Slider manabar;
+    // Literally only used in one place :(
+    private static int enterForCharacterSelection;
+    private static int enterForEnemySelection;
+
+    [SerializeField] TextMeshProUGUI turnCounterObject;
+    private static TextMeshProUGUI turnCounter;
+    private static int turn;
+
 
     private static int characterIndex;
 
@@ -80,7 +87,10 @@ public class TransitionManager : MonoBehaviour
         {
             portraits[enemies[i]] = portraitObjects[i + 4];
         }
-        manabar = manabarObject;
+        turnCounter = turnCounterObject;
+        turn = 1;
+        enterForCharacterSelection = 11;
+        enterForEnemySelection = 11;
     }
     
     public static void processTransition(int selected)
@@ -90,16 +100,18 @@ public class TransitionManager : MonoBehaviour
             case GlobalStateTracker.States.CharacterSelect:
                 if (selected != 4)
                 {
+                    if (selections[0].checkLock(enterForCharacterSelection))
+                    {
+                        selections[0].gameObject.SetActive(true);
+                        return;
+                    }
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
                     characterIndex = selected;
                     transitions[0].Transition(selected);
                 }
                 else
                 {
-                    // This will later be turned into a valid "Skip turn" block which actually works, but I am lazy right now and am just going to do this
-                    GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
-                    characterIndex = 0;
-                    transitions[0].Transition(0);
+                    enemyTurn();
                 }
                 break;
 
@@ -211,6 +223,11 @@ public class TransitionManager : MonoBehaviour
                 break;
 
             case GlobalStateTracker.States.PostActionEntitySelect:
+                if (selections[6].checkLock(enterForEnemySelection))
+                {
+                    selections[6].gameObject.SetActive(true);
+                    return;
+                }
                 GlobalStateTracker.battleState = GlobalStateTracker.States.Acting;
                 switch (GlobalMoveLists.MoveList[characterIndex][GlobalStateTracker.currentAction].Item1)
                 {
@@ -237,7 +254,7 @@ public class TransitionManager : MonoBehaviour
         }
 
 
-        Debug.Log(GlobalStateTracker.toString());
+        //Debug.Log(GlobalStateTracker.toString());
     }
 
     public static void reverseTransition()
@@ -336,11 +353,89 @@ public class TransitionManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log(GlobalStateTracker.toString());
+        //Debug.Log(GlobalStateTracker.toString());
     }
 
     public static void ResetFSM()
     {
+        selections[0].setLock(10 + characters.IndexOf(GlobalStateTracker.currentEntity) + 1, true);
         transitions[15].Transition(0);
+    }
+
+    public static void FSMResetCallback()
+    {
+        bool allLocked = true;
+        for (int i = 0; i < 4; i++)
+        {
+            allLocked = allLocked && selections[6].checkLock(10 + i + 1);
+        }
+        if (allLocked)
+        {
+            finishBattle();
+        }
+        allLocked = true;
+        for (int i = 0; i < 4; i++)
+        {
+            allLocked = allLocked && selections[0].checkLock(10 + i + 1);
+        }
+        if (allLocked)
+        {
+            enemyTurn();
+        }
+        int nextCharacterSelect = 11;
+        while (selections[0].checkLock(nextCharacterSelect))
+            nextCharacterSelect++;
+        enterForCharacterSelection = nextCharacterSelect;
+        selections[0].SetSelectSecret(nextCharacterSelect);
+        int nextEnemySelect = 11;
+        while (selections[6].checkLock(nextEnemySelect))
+            nextEnemySelect++;
+        enterForEnemySelection = nextEnemySelect;
+        selections[6].SetSelectSecret(nextEnemySelect);
+    }
+
+    public static void enemyTurn()
+    {
+        GlobalStateTracker.battleState = GlobalStateTracker.States.EnemyActions;
+        transitions[16].Transition(0);
+    }
+
+    public static void nextTurn()
+    {
+        selections[0].clearLocks();
+        turn++;
+        turnCounter.text = "Turn " + turn;
+        selections[0].gameObject.SetActive(true);
+    }
+
+    public static void finishBattle()
+    {
+        // DoNothing for now
+    }
+
+    public static void setLock(int selector, int lockval, bool value)
+    {
+        selections[selector].setLock(lockval, value);
+    }
+
+
+    // Stupid fucking functions for the stupidest functionality you will ever see
+    public static void setEnterForCharacterSelection(int xy)
+    {
+        if(GlobalStateTracker.battleState == GlobalStateTracker.States.CharacterSelect)
+            enterForCharacterSelection = xy;
+    }
+    // Stupid fucking functions for the stupidest functionality you will ever see
+    public static void setEnterForEnemySelection(int xy)
+    {
+        enterForEnemySelection = xy;
+    }
+
+    public static int findNextUnlocked(int selection, int start)
+    {
+        int nextSelect = 10 + start + 1;
+        while (selections[selection].checkLock(nextSelect))
+            nextSelect++;
+        return nextSelect % 10 - 1;
     }
 }
