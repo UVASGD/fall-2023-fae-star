@@ -1,0 +1,38 @@
+﻿NAME: 
+From deep within the towering trees the quiet footsteps of a small mage can be heard. With a wide-brimmed hat atop her head and a makeshift staff in hand, she walks slowly through the forest. She treks further into the darkness before coming to an abrupt stop.
+
+
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Where… am I?
+NAME:Leoht 
+...
+NAME:Leoht 
+I remember leaving Nihtcluain, but not entering the woods…
+NAME: 
+The dull thud of a knife hitting the tree trunk near the mage’s head startles Leoht out of her thoughts. Standing a few paces away is a caped figure holding a knife in his hand, with even more blades strapped to his belts.
+NAME:Assassin 
+PIC2:Deorangry
+Who are you?
+NAME:Leoht 
+PIC1:Mage_Surprised_Hat
+...
+NAME:Assassin 
+Well?
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Leoht.
+NAME:Assassin 
+And…? 
+What are you here to do?
+NAME: 
+Before Leoht can respond the sound of a low growl is heard. A large, menacing wolf emerges from the bushes behind her.
+NAME:Assassin 
+Curses. They come yet again.
+NAME:Leoht 
+What wolves are these? They shouldn’t attack… right?
+NAME: 
+The cloaked man enters a crouched stance, knife outstretches as if measuring the distance. 
+NAME:Assassin 
+This’ll be the perfect chance to test my skill. You look small. I’ll fight with you, for now, anyway.
+ENDS:

@@ -1,0 +1,63 @@
+﻿NAME:Assassin 
+PIC2:Deorneutral
+You fight better than you look.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+...Thanks. You–uh too?
+NAME:Assassin 
+PIC2:Deorangry
+You’re fae, not human.
+NAME: 
+Assassin turns to point his knife edge up to Leoht.
+NAME:Leoht 
+Woah no no, please. I don’t mean any harm. We just fought together! 
+I’m not your enemy, I just want to…
+NAME: 
+Leoht notices the dead wolf on the forest floor. It’s pulsing and contorted. 
+She kneels down and begins to inspect it.
+NAME:Assassin 
+PIC2:Deorneutral
+Why are you poking the corpse?
+NAME:Leoht 
+Don’t you think it’s strange how aggressive this wolf was?
+NAME: Assassin 
+glances back at Leoht’s glowing eyes and sparkling staff.
+NAME:Assassin 
+I think you’re the strange one.
+NAME:Leoht 
+What?
+NAME:Assassin 
+Happens quite often.
+NAME:Leoht 
+Its blood is the wrong color…
+NAME:Assassin I don’t see what you mean.
+NAME:Leoht 
+It’s unnatural. I’ve seen something similar before in Niht–ah, my hometown. My people blamed me for it.
+NAME:Assassin 
+?
+NAME:Leoht 
+It’s nothing.
+NAME:Leoht 
+...        
+NAME:Leoht 
+So… you aren’t going to fight me?
+NAME:Assassin 
+No. I don’t think I need to.
+NAME:Leoht 
+Well, do you want to come with me then? I don’t have anywhere to go back to, so I’m just going to keep exploring.
+NAME:Assassin 
+I just threatened to kill you.
+NAME:Leoht 
+But you haven’t.
+NAME:Assassin 
+...Yeah, fair enough. I’ll go with you. I don’t have anything else to do either.
+NAME:Leoht 
+And your name?
+NAME:Assassin 
+...
+NAME:Deor 
+Deor. 
+So, where are we going?
+NAME:Leoht 
+To find out what’s happening with these creatures.
+ENDS:
