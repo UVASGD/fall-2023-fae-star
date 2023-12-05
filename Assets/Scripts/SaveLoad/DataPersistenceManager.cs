@@ -21,8 +21,7 @@ public class DataPersistenceManager : MonoBehaviour
         if (instance != null) 
         {
             Debug.Log("Found more than one Data Persistence Manager in the scene.");
-            Destroy(this.gameObject);
-            return;
+            Destroy(instance.gameObject);
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
@@ -66,7 +65,9 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(saveData);
         }
-        SceneManager.LoadScene(this.saveData.CurrentScene);
+        DialogueScript.initialScriptName = this.saveData.CurrentScene;
+        DialogueScript.nextScene = this.saveData.CurrentFight;
+        SceneManager.LoadScene("DialogueScene");
     }
 
     public void SaveGame()

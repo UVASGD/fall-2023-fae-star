@@ -1,26 +1,26 @@
-NAMELeoht 
-PIC1Mage_Neutral_Hat
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
 It’s over.
-NAMEBeda
-PIC1Hacker_Neutral
+NAME:Beda
+PIC1:Hacker_Neutral
 Finally! I thought those things would never die.
-NAMEEarl 
-PIC1Earlneutral
+NAME:Earl 
+PIC1:Earlneutral
 With The Creators gone, no new corrupted creatures should spawn.
-NAMEDeor 
-PIC1Deorneutral
+NAME:Deor 
+PIC1:Deorneutral
 Easier than I thought.
-NAMEBeda 
-PIC1Hacker_Surprised
+NAME:Beda 
+PIC1:Hacker_Surprised
 You call that easy! You and I have different definitions of the words.
-NAMELeoht 
-PIC1Mage_Neutral_Hat
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
 Now all that’s left is ridding the world of the remaining corrupted beasts.
-NAMEBeda 
-PIC1Hacker_Happy
+NAME:Beda 
+PIC1:Hacker_Happy
 Without the Mega-Beasties strengthening them, it shouldn’t be too hard.
-NAMELeoht 
-PIC1Mage_Happy_Hat
+NAME:Leoht 
+PIC1:Mage_Happy_Hat
 In that case, it’s time to get to work.
-ENDS
+ENDS:
 

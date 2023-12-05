@@ -6,6 +6,7 @@ public class MusicSwapper : MonoBehaviour, IActivator
 {
     [SerializeField] AudioSource[] songs;
     [SerializeField] int transitionLengthFrames;
+    [SerializeField] float targetVolume;
 
     
     private int selectedSong;
@@ -25,9 +26,9 @@ public class MusicSwapper : MonoBehaviour, IActivator
     {
         for(int i = 0; i < songs.Length; i++)
         {
-            if(i == selectedSong && songs[i].volume < 1)
+            if(i == selectedSong && songs[i].volume < 1f * targetVolume)
             {
-                songs[i].volume += 1f / transitionLengthFrames;
+                songs[i].volume += (1f * targetVolume) / transitionLengthFrames;
             }
             else if(songs[i].volume > 0)
             {

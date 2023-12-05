@@ -13,7 +13,6 @@ public class SceneTransitionExit : MonoBehaviour
 
     private DataPersistenceManager dataPersistenceManager;
     private Image scr;
-    private Image otherImage;
     private bool finished;
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class SceneTransitionExit : MonoBehaviour
     {
         screen.SetActive(true);
         scr = screen.GetComponent<Image>();
-        otherImage = otherScreen.GetComponent<Image>();
         menu.interactable = false;
         scr.CrossFadeAlpha(1, duration, false);
         StartCoroutine(CooldownOut());
@@ -31,8 +29,6 @@ public class SceneTransitionExit : MonoBehaviour
     {
         yield return new WaitForSeconds(duration + 1);
         //Debug.Log("interactable");
-        screen.SetActive(false);
-        otherScreen.SetActive(true);
         finished = true;
     }
     
@@ -40,8 +36,7 @@ public class SceneTransitionExit : MonoBehaviour
     {
         if(finished)
         {
-            dataPersistenceManager = GameObject.Find("SaveDataManager").GetComponent<DataPersistenceManager>();
-            SceneManager.LoadScene(dataPersistenceManager.getSaveData().CurrentScene);
+            SceneManager.LoadScene("DialogueScene");
         }
     }
 }

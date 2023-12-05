@@ -40,9 +40,6 @@ public class TransitionManager : MonoBehaviour
      */
     [SerializeField] Selection[] selectionObjects;
     private static List<Selection> selections;
-    // Literally only used in one place :(
-    private static int enterForCharacterSelection;
-    private static int enterForEnemySelection;
 
     [SerializeField] TextMeshProUGUI turnCounterObject;
     private static TextMeshProUGUI turnCounter;
@@ -50,6 +47,9 @@ public class TransitionManager : MonoBehaviour
 
     [SerializeField] GameObject battleFinishObject;
     private static GameObject battleFinish;
+
+    [SerializeField] MusicSwapper musicManagerObject;
+    private static MusicSwapper musicManager;
 
     private static int characterIndex;
 
@@ -91,9 +91,8 @@ public class TransitionManager : MonoBehaviour
         }
         turnCounter = turnCounterObject;
         battleFinish = battleFinishObject;
+        musicManager = musicManagerObject;
         turn = 1;
-        enterForCharacterSelection = 11;
-        enterForEnemySelection = 11;
     }
     
     public static void processTransition(int selected)
@@ -103,11 +102,6 @@ public class TransitionManager : MonoBehaviour
             case GlobalStateTracker.States.CharacterSelect:
                 if (selected != 4)
                 {
-                    if (selections[0].checkLock(enterForCharacterSelection))
-                    {
-                        selections[0].gameObject.SetActive(true);
-                        return;
-                    }
                     GlobalStateTracker.battleState = GlobalStateTracker.States.ActionSelect;
                     characterIndex = selected;
                     transitions[0].Transition(selected);
@@ -226,11 +220,6 @@ public class TransitionManager : MonoBehaviour
                 break;
 
             case GlobalStateTracker.States.PostActionEntitySelect:
-                if (selections[6].checkLock(enterForEnemySelection))
-                {
-                    selections[6].gameObject.SetActive(true);
-                    return;
-                }
                 if(selected == 4)
                 {
                     reverseTransition();
@@ -394,18 +383,17 @@ public class TransitionManager : MonoBehaviour
         int nextCharacterSelect = 11;
         while (selections[0].checkLock(nextCharacterSelect))
             nextCharacterSelect++;
-        enterForCharacterSelection = nextCharacterSelect;
         selections[0].SetSelectSecret(nextCharacterSelect);
         int nextEnemySelect = 11;
         while (selections[6].checkLock(nextEnemySelect))
             nextEnemySelect++;
-        enterForEnemySelection = nextEnemySelect;
         selections[6].SetSelectSecret(nextEnemySelect);
     }
 
     public static void enemyTurn()
     {
         GlobalStateTracker.battleState = GlobalStateTracker.States.EnemyActions;
+        musicManager.Activate(4, 0);
         transitions[16].Transition(0);
     }
 
@@ -421,25 +409,14 @@ public class TransitionManager : MonoBehaviour
 
     public static void finishBattle()
     {
+        GlobalStateTracker.battleState = GlobalStateTracker.States.enterState;
+        selections[0].gameObject.SetActive(false);
         battleFinish.SetActive(true);
     }
 
     public static void setLock(int selector, int lockval, bool value)
     {
         selections[selector].setLock(lockval, value);
-    }
-
-
-    // Stupid fucking functions for the stupidest functionality you will ever see
-    public static void setEnterForCharacterSelection(int xy)
-    {
-        if(GlobalStateTracker.battleState == GlobalStateTracker.States.CharacterSelect)
-            enterForCharacterSelection = xy;
-    }
-    // Stupid fucking functions for the stupidest functionality you will ever see
-    public static void setEnterForEnemySelection(int xy)
-    {
-        enterForEnemySelection = xy;
     }
 
     public static int findNextUnlocked(int selection, int start)

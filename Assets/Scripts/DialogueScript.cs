@@ -10,7 +10,7 @@ using TMPro;
 public class DialogueScript : MonoBehaviour
 {
     // The name of the initial script
-    [SerializeField] string initialScriptName;
+    public static string initialScriptName;
 
     // The object with the internal text of the dialogue box
     [SerializeField] TextMeshProUGUI text;
@@ -39,7 +39,7 @@ public class DialogueScript : MonoBehaviour
     // The rate at which characters appear on the screen
     [SerializeField] int txtSpeed;
 
-    [SerializeField] string nextScene;
+    public static string nextScene;
 
     private Image spName;
     private Transform tfName;

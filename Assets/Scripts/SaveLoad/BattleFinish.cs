@@ -30,7 +30,11 @@ public class BattleFinish : MonoBehaviour
             c.magicDefense += 2 * inc;
         }
         dataPersistenceManager = GameObject.Find("SaveDataManager").GetComponent<DataPersistenceManager>();
-        dataPersistenceManager.getSaveData().CurrentScene = SceneListings.nextScene[dataPersistenceManager.getSaveData().CurrentScene];
+        (string, string) nextScene = SceneListings.nextScene[dataPersistenceManager.getSaveData().CurrentScene];
+        dataPersistenceManager.getSaveData().CurrentScene = nextScene.Item1;
+        dataPersistenceManager.getSaveData().CurrentFight = nextScene.Item2;
+        DialogueScript.initialScriptName = nextScene.Item1;
+        DialogueScript.nextScene = nextScene.Item2;
         dataPersistenceManager.SaveGame();
     }
 

@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class SceneListings
 {
-    public static Dictionary<string, string> nextScene = new Dictionary<string, string>
+    public static Dictionary<string, (string, string)> nextScene = new Dictionary<string, (string, string)>
     {
-        { "SC1", "SC2" },
-        { "SC2", "SC3" },
-        { "SC3", "SC4" },
-        { "SC4", "SC5" },
-        { "SC5", "SC6" },
-        { "SC6", "SC7" },
-        { "SC7", "SC8" },
-        { "SC8", "MainMenu" },
+        { "1.1", ("1.2", "0-1") },
+        { "1.2", ("2.1", "0-2") },
+        { "2.1", ("2.2", "0-2") },
+        { "2.2", ("2.3", "0-2") },
+        { "2.3", ("3.1", "0-3") },
+        { "3.1", ("3.2", "0-3") },
+        { "3.2", ("3.3", "0-3") },
+        { "3.3", ("1.1", "0-1") },
     };
 }

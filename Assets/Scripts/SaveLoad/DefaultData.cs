@@ -40,5 +40,6 @@ public class DefaultData
             new Character("Knight", 35, 10, 9, 4, 5, 12, 5, 0, 5, 0),
         };
 
-    public static readonly string DefaultScene = "SC1";
+    public static readonly string DefaultScene = "1.1";
+    public static readonly string DefaultFight = "0-1";
 }
