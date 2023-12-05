@@ -12,7 +12,7 @@ public class LevelThresholds : MonoBehaviour
     public static int determineLevel(int xp)
     {
         int lvl = 0;
-        for (int i = 0; xp > thresholds[i] && i < thresholds.Count; i++)
+        for (int i = 1; xp > thresholds[i - 1] && i - 1 < thresholds.Count; i++)
         {
             xp -= thresholds[i];
             lvl = i;
