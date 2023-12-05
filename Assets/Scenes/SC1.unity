@@ -499,26 +499,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 921556126}
     m_Modifications:
-    - target: {fileID: 5463508957467542811, guid: c607d998bbc4ca74dad58676668c9c87, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5463508957467542811, guid: c607d998bbc4ca74dad58676668c9c87, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -400
-      objectReference: {fileID: 0}
-    - target: {fileID: 5463508957467542811, guid: c607d998bbc4ca74dad58676668c9c87, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5463508957474329122, guid: c607d998bbc4ca74dad58676668c9c87, type: 3}
       propertyPath: screenBlock
       value: 
       objectReference: {fileID: 1090284702}
-    - target: {fileID: 5463508957474329122, guid: c607d998bbc4ca74dad58676668c9c87, type: 3}
-      propertyPath: initialScriptName
-      value: Script SC. 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 5463508957474329123, guid: c607d998bbc4ca74dad58676668c9c87, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
