@@ -6,44 +6,41 @@ using UnityEngine;
 
 public class GlobalMoveLists : IDataPersistence // interface needed to enable saving/loading capacities
 {
-    
-    
-    // For now I am going to hard code this, but we might want to change it sometime in the future.
-    // The setup for this list is (Move, int) => (Move, Position in Selection List)
-
+    // The setup for this list is (string) => (Move Action Type, Mana Cost, Position in Selection List)
+    //public static List<Dictionary<string, (Move.ActionTypes, int, int)>> MoveList;
     public static List<Dictionary<string, (Move.ActionTypes, int, int)>> MoveList = new List<Dictionary<string, (Move.ActionTypes, int, int)>>
         { //Mage's list comes first
-	        new Dictionary<string, (Move.ActionTypes, int, int)> 
+	        new Dictionary<string, (Move.ActionTypes, int, int)>
             {
                 {"Club", (GlobalMoveDictionary.MoveActionTypes["Club"], GlobalMoveDictionary.MoveManaCosts["Club"], 11)},
-                {"Lesser Heal", (GlobalMoveDictionary.MoveActionTypes["Lesser Heal"], GlobalMoveDictionary.MoveManaCosts["Lesser Heal"], 21)},
-                {"Heal", (GlobalMoveDictionary.MoveActionTypes["Heal"], GlobalMoveDictionary.MoveManaCosts["Heal"], 31)},
-                {"Lesser Flame", (GlobalMoveDictionary.MoveActionTypes["Lesser Flame"], GlobalMoveDictionary.MoveManaCosts["Lesser Flame"], 41)},
-                {"Blazing", (GlobalMoveDictionary.MoveActionTypes["Blazing"], GlobalMoveDictionary.MoveManaCosts["Blazing"], 51)},
-                {"Back", (Move.ActionTypes.NA, 0, 61)}
+                //{"Lesser Heal", (GlobalMoveDictionary.MoveActionTypes["Lesser Heal"], GlobalMoveDictionary.MoveManaCosts["Lesser Heal"], 21)},
+                {"Back", (Move.ActionTypes.NA, 0, 21)}
             },
             new Dictionary<string, (Move.ActionTypes, int, int)>
             {
                 {"Knife", (GlobalMoveDictionary.MoveActionTypes["Knife"], GlobalMoveDictionary.MoveManaCosts["Knife"], 11)},
-                {"Backstab", (GlobalMoveDictionary.MoveActionTypes["Backstab"], GlobalMoveDictionary.MoveManaCosts["Backstab"], 21)},
-                {"Back", (Move.ActionTypes.NA, 0, 31)}
+                //{"Backstab", (GlobalMoveDictionary.MoveActionTypes["Backstab"], GlobalMoveDictionary.MoveManaCosts["Backstab"], 21)},
+                {"Back", (Move.ActionTypes.NA, 0, 21)}
             },
             new Dictionary<string, (Move.ActionTypes, int, int)>
             {
                 {"Poison Touch", (GlobalMoveDictionary.MoveActionTypes["Poison Touch"], GlobalMoveDictionary.MoveManaCosts["Poison Touch"], 11)},
-                {"Malware", (GlobalMoveDictionary.MoveActionTypes["Malware"], GlobalMoveDictionary.MoveManaCosts["Malware"], 21)},
-                {"Back", (Move.ActionTypes.NA, 0, 31)}
+                //{"Malware", (GlobalMoveDictionary.MoveActionTypes["Malware"], GlobalMoveDictionary.MoveManaCosts["Malware"], 21)},
+                {"Back", (Move.ActionTypes.NA, 0, 21)}
             },
             new Dictionary<string, (Move.ActionTypes, int, int)>
             {
                 {"Slash", (GlobalMoveDictionary.MoveActionTypes["Slash"], GlobalMoveDictionary.MoveManaCosts["Slash"], 11)},
-                {"Raise Shield", (GlobalMoveDictionary.MoveActionTypes["Raise Shield"], GlobalMoveDictionary.MoveManaCosts["Raise Shield"], 21)},
-                {"Back", (Move.ActionTypes.NA, 0, 31)}
+                //{"Raise Shield", (GlobalMoveDictionary.MoveActionTypes["Raise Shield"], GlobalMoveDictionary.MoveManaCosts["Raise Shield"], 21)},
+                {"Back", (Move.ActionTypes.NA, 0, 21)}
             }
         };
 
     public void LoadData(SaveData data) {
-        GlobalMoveLists.MoveList.Clear();
+        if (GlobalMoveLists.MoveList != null)
+            GlobalMoveLists.MoveList.Clear();
+        else
+            GlobalMoveLists.MoveList = new List<Dictionary<string, (Move.ActionTypes, int, int)>>();
         foreach (SerializableList<string> list in data.MoveList)
         {
             Dictionary<string, (Move.ActionTypes, int, int)> nextList = new Dictionary<string, (Move.ActionTypes, int, int)>();

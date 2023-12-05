@@ -11,8 +11,11 @@ public class Enemy
     public int magicAttack;
     public int technique;
     public int defense;
+    public int magicDefense;
     public int erruptionMeter;
     public int level;
+
+    public string[] moves;
 
     public void act()
     {

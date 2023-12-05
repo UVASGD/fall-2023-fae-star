@@ -11,6 +11,7 @@ public class Character
     public int magicAttack;
     public int technique;
     public int defense;
+    public int magicDefense;
     public int affinity;
     public int level;
     public int totalXP;
@@ -22,6 +23,7 @@ public class Character
                     int magicAttack,
                     int technique,
                     int defense,
+                    int magicDefense,
                     int affinity,
                     int level,
                     int totalXP)
@@ -33,6 +35,7 @@ public class Character
         this.magicAttack = magicAttack;
         this.technique = technique;
         this.defense = defense;
+        this.magicDefense = magicDefense;
         this.affinity = affinity;
         this.level = level;
         this.totalXP = totalXP;

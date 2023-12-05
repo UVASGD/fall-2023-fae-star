@@ -39,6 +39,9 @@ public class GlobalMoveDictionary : MonoBehaviour
         // Knight Moves
         { "Slash", Move.ActionTypes.SE },
         { "Raise Shield", Move.ActionTypes.PB },
+
+        // Enemy Moves
+        { "Wolf Bite", Move.ActionTypes.SE },
     };
 
     public static Dictionary<string, int> MoveManaCosts = new Dictionary<string, int>

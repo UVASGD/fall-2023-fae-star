@@ -17,7 +17,6 @@ public class EnemySelectTransition : MonoBehaviour, ITransition
 
     private int selectedCharacter;
     private int selectedEnemy;
-    private bool reversed;
     private bool firstActivation;
     private int frameCount;
 
@@ -33,32 +32,7 @@ public class EnemySelectTransition : MonoBehaviour, ITransition
     // Update is called once per frame
     void Update()
     {
-        // Code to transition back
-        if (reversed)
-        {
-            int at = 0;
-            float progress = (float)frameCount / transitionLength;
-            for (int i = 0; i < enemySprites.Length; i++)
-            {
-                if (i == selectedEnemy)
-                {
-                    enemySprites[i].transform.position = Vector3.Lerp(forwardPosition.position, basePositions[i].position, progress);
-                    float scale = 1f - 0.25f * progress;
-                    enemySprites[i].transform.localScale = new Vector3(scale, scale, scale);
-                }
-                else
-                {
-                    enemySprites[i].transform.position = Vector3.Lerp(reservePositions[at].position, basePositions[i].position, progress);
-                    at++;
-                }
-            }
-
-            if (frameCount == transitionLength)
-            {
-
-            }
-        }
-        else if (firstActivation)
+        if (firstActivation)
         {
             int at = 0;
             float progress = (float)frameCount / transitionLength;
@@ -101,7 +75,6 @@ public class EnemySelectTransition : MonoBehaviour, ITransition
         }
 
         // Start transition
-        reversed = false;
         selectedEnemy = characterPosition;
 
 
@@ -111,9 +84,7 @@ public class EnemySelectTransition : MonoBehaviour, ITransition
 
     public void ReverseTransition()
     {
-        // Start Reverse Transition
-        reversed = true;
-        frameCount = 0;
+        // Never called
     }
 
     public void setSelectedCharacter(int selected)

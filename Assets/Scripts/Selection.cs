@@ -12,6 +12,7 @@ public class Selection : MonoBehaviour
     private List<IActivator> iSwapActivators = new List<IActivator>();
 
     private List<List<GameObject>> listItems;
+    private List<List<bool>> locks;
     private int x = 0;
     private int y = 0;
     private RectTransform rtf;
@@ -27,7 +28,7 @@ public class Selection : MonoBehaviour
 
         // List instantiation bc Unity is stupid and doesn't allow serialization of 2D arrays
         listItems = new List<List<GameObject>>();
-        for(int i = 0; i < listSizes.Count; i++)
+        for (int i = 0; i < listSizes.Count; i++)
         {
             listItems.Add(new List<GameObject>());
         }
@@ -44,6 +45,8 @@ public class Selection : MonoBehaviour
             listItems[xCoord].Add(items[i]);
             at++;
         }
+        if (locks == null)
+            spawnLocks();
 
         adjustOutline();
     }
@@ -68,10 +71,18 @@ public class Selection : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
+            
             x--;
             x += listItems.Count;
             x %= listItems.Count;
             y = Mathf.Min(y, listItems[x].Count);
+            while (locks[x][y])
+            {
+                x--;
+                x += listItems.Count;
+                x %= listItems.Count;
+                y = Mathf.Min(y, listItems[x].Count);
+            }
             onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
@@ -79,6 +90,12 @@ public class Selection : MonoBehaviour
             x++;
             x %= listItems.Count;
             y = Mathf.Min(y, listItems[x].Count);
+            while (locks[x][y])
+            {
+                x++;
+                x %= listItems.Count;
+                y = Mathf.Min(y, listItems[x].Count);
+            }
             onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -86,12 +103,23 @@ public class Selection : MonoBehaviour
             y--;
             y += listItems[x].Count;
             y %= listItems[x].Count;
+            while (locks[x][y])
+            {
+                y--;
+                y += listItems[x].Count;
+                y %= listItems[x].Count;
+            }
             onSwap(0);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             y++;
             y %= listItems[x].Count;
+            while (locks[x][y])
+            {
+                y++;
+                y %= listItems[x].Count;
+            }
             onSwap(0);
         }
 
@@ -137,10 +165,19 @@ public class Selection : MonoBehaviour
     {
         if (gameObject.activeInHierarchy == true)
         {
-            x = xy / 10 - 1;
-            y = xy % 10 - 1;
-            onSwap(1);
+            SetSelectSecret(xy);
         }
+    }
+
+    public void SetSelectSecret(int xy)
+    {
+        int newx = xy / 10 - 1;
+        int newy = xy % 10 - 1;
+        if (locks[newx][newy])
+            return;
+        x = newx;
+        y = newy;
+        onSwap(1);
     }
 
     // Activates when player confirms selection
@@ -170,5 +207,57 @@ public class Selection : MonoBehaviour
         }
         currentSelection += y;
         return currentSelection;
+    }
+
+    public void setLock(int xy, bool value)
+    {
+        if (locks == null)
+            spawnLocks();
+        locks[xy / 10 - 1][xy % 10 - 1] = value;
+    }
+
+    public void clearLocks()
+    {
+        if(locks == null)
+        {
+            spawnLocks();
+            return;
+        }
+        foreach(List<bool> list in locks)
+        {
+            for(int i = 0; i < list.Count; i++)
+            {
+                list[i] = false;
+            }
+        }
+    }
+
+    public bool checkLock(int xy)
+    {
+        if (locks == null)
+            spawnLocks();
+        return locks[xy / 10 - 1][xy % 10 - 1];
+    }
+
+    public void spawnLocks()
+    {
+        locks = new List<List<bool>>();
+        for (int i = 0; i < listSizes.Count; i++)
+        {
+            locks.Add(new List<bool>());
+        }
+
+        int xCoord = 0;
+        int at = 0;
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (at == listSizes[xCoord])
+            {
+                xCoord++;
+                at = 0;
+            }
+            locks[xCoord].Add(false);
+            at++;
+        }
     }
 }
