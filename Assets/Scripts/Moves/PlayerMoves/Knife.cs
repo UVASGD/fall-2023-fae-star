@@ -11,7 +11,7 @@ public class Knife : Move
         critRate = 1000000.15f;
         enemyMove = false;
         base.Awake();
-        keyFrames = new Dictionary<int, float> { { 3, 1 } };
+        keyFrames = new Dictionary<int, float> { { 1, 1 } };
         characterAnimator.SetTrigger("Physical");
     }
 

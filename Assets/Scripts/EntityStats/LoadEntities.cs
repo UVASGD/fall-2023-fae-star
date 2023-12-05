@@ -6,7 +6,7 @@ using TMPro;
 
 public class LoadEntities : MonoBehaviour
 {
-    [SerializeField] TextAsset enemyStatFile;
+    public static TextAsset enemyStatFile;
 
     //[SerializeField] List<GameObject> characterLocations;
     [SerializeField] List<GameObject> characterPortraits;

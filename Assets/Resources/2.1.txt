@@ -1,0 +1,61 @@
+NAME: 
+Leoht and Deor find themselves in a valley of sorts. The two venture out together for some time before being forcefully stopped in their tracks by a buzzing invisible wall. Deor runs his fingers against it.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+What magic is this?
+NAME:Deor 
+PIC1:Deorneutral
+Not magic.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Then what is it?
+NAME:Deor
+PIC1:Deorneutral
+Not sure.
+NAME:Leoht
+PIC1:Mage_Neutral_Hat
+Very helpful, Deor.
+NAME: 
+Leoht places a hand on the invisible wall and a crackle that shoots out from their hand and wraps around the empty space in front of them in a large circle. After a brief moment, the wall dissolves, revealing a small building.
+NAME:Deor 
+PIC1:Deorneutral
+How did you–did you do that?
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Not on purpose.
+NAME:Voice 
+Hey! Who broke the cloaking mechanism!
+NAME:Leoht 
+Sorry, it was an accident.
+NAME:Voice 
+How do you accidentally break the super high tech cloaking device I designed? Who the heck are you?
+NAME:Deor 
+PIC1:Deorneutral
+If you’re going to question us, show yourself first.
+NAME:Voice 
+And give you the chance to kill me? No way! Yeah, I see those knives you got there, and I’m not taking my chances! Why do you think I built this place?
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+What is this place anyway?
+NAME:Voice 
+My base!
+NAME: 
+As Leoht converses with the seemingly disembodied voice. Deor begins walking around the wall looking for a way in. After a minute or so he silently points to a spot on the wall. She nods and joins Deor as he activates the hidden entrance and enters. 
+NAME:Voice 
+PIC2:Hacker_Surprised
+GAH! How did you get in here?
+NAME:Leoht 
+Through there.
+NAME:Voice 
+But, the-the cameras? How did you cut them all at once? That’s not possible!
+NAME: 
+Suddenly, the base’s alarm system goes off.
+NAME:Voice 
+PIC2:Hacker_Neutral
+Damn it, it’s more of those creatures
+NAME:Deor 
+PIC1:Deorneutral
+Doesn’t your base have defenses?
+NAME:Voice 
+Not anymore apparently!
+ENDS:

@@ -4,6 +4,7 @@ using System.IO;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DialogueScript : MonoBehaviour
@@ -37,6 +38,8 @@ public class DialogueScript : MonoBehaviour
 
     // The rate at which characters appear on the screen
     [SerializeField] int txtSpeed;
+
+    [SerializeField] string nextScene;
 
     private Image spName;
     private Transform tfName;
@@ -155,7 +158,8 @@ public class DialogueScript : MonoBehaviour
                     pic2.sprite = null;
                     tfName.position = new Vector3(tfName.parent.position.x - 9.5F, tfName.position.y, tfName.position.z);
                     finished = true;
-                    gameObject.SetActive(false);
+                    LoadEntities.enemyStatFile = Resources.Load<TextAsset>("BattleSpawnFiles/" + nextScene);
+                    SceneManager.LoadScene("BattleScene");
                     break;
 
 
@@ -168,11 +172,6 @@ public class DialogueScript : MonoBehaviour
                     // Reposition name box
                     if (nametag.text != "")
                     {
-                        Debug.Log(tfName.position);
-                        Debug.Log(tfName.parent.position);
-                        Debug.Log(tfName.localPosition);
-                        Debug.Log(tfName.parent.localPosition);
-                        Debug.Log(tf.rect.width / 2);
                         if (tfName.localPosition.x == -(tf.rect.width / 2))
                         {
                             tfNameRect.pivot = new Vector2(1, 0);

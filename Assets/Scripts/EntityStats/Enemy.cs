@@ -14,6 +14,7 @@ public class Enemy
     public int magicDefense;
     public int erruptionMeter;
     public int level;
+    public int xp;
 
     public string[] moves;
 

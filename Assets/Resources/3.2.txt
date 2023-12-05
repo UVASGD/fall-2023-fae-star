@@ -1,0 +1,38 @@
+NAME:Earl 
+PIC1:Earlneutral
+That’s the last of them.
+NAME:Deor 
+PIC1:Deorneutral
+Over here.
+NAME:Beda 
+PIC1:Hacker_Neutral
+How did you even get over there? Can you teleport or something?
+NAME:Deor 
+PIC1:Deorneutral
+No. Look, there seems to be some sort of entrance here.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Seems like the beginning of the labyrinth.
+NAME: 
+The party enters the dark tunnel and begins their search for The Creators. It doesn’t take long for the air to become still and tunnel to chill.
+NAME:Leoht 
+The air is dark here. It feels almost sick.
+NAME:Beda 
+PIC1:Hacker_Neutral
+Guess we’re almost there then.
+NAME: 
+An ear-piercing sound echoes through the labyrinth and the group covers their ears in an attempt to block out the shrieking roar.
+NAME:Earl 
+PIC1:Earlangry
+Time to end this!
+NAME:Beda
+PIC1:Hacker_Happy
+ Yeah! Down with Mega-Beasties!
+NAME:Deor
+PIC1:Deorangry
+I’ll cut it down to size.
+NAME:Leoht
+PIC1:Mage_Neutral_Hat
+We’ll stop the corruption here and now.
+ENDS:
+

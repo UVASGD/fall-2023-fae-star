@@ -119,7 +119,6 @@ public class EnemyDance : MonoBehaviour, ITransition
 
             if (frameCount == transitionLength && !invoked)
             {
-                Debug.Log(GlobalStateTracker.currentAction);
                 GlobalMoveDictionary.invoke(GlobalStateTracker.currentAction);
                 invoked = true;
             }

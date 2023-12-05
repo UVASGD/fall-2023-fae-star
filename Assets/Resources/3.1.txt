@@ -1,0 +1,21 @@
+NAME: 
+Earl told the rest of the group about rumors he had heard during his time in the king’s army. Rumors of original monsters hidden in a labyrinth deep within the ruins of an abandoned town, destroyed by the corrupted beasts. Monsters that are supposedly responsible for the continuing creation of corrupted beasts. The so-called Creators. And so the group decides to work together to find The Creators and put a stop to their corruption.
+NAME:Beda 
+PIC1:Hacker_Neutral
+Whew, that last fight was a tough one! Is it just me or are these beasties getting tougher and tougher to beat?
+NAME:Earl 
+PIC1:Earlneutral
+We must be getting close.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+The Creators are most likely using stronger monsters to try and defend themselves from intruders and enemies.
+NAME:Deor 
+PIC1:Deorangry
+In other words, us.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Essentially.
+NAME:Beda 
+PIC1:Hacker_Surprised
+Look out! Creatures incoming!
+ENDS:

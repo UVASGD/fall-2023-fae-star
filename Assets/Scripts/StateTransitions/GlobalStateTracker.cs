@@ -16,7 +16,7 @@ public class GlobalStateTracker
         EnemyActions // This state represents the enemy's turn
     }
 
-    public static States battleState = States.CharacterSelect;
+    public static States battleState = States.enterState;
 
     public static GameObject currentEntity = null;
 

@@ -34,13 +34,18 @@ public class DataPersistenceManager : MonoBehaviour
         // Fuck it we hard code this shit
         this.dataPersistenceObjects = new List<IDataPersistence>();
         this.dataPersistenceObjects.Add(new GlobalMoveLists());
+        this.dataPersistenceObjects.Add(new GlobalEntityStats());
         this.saveData = new SaveData();
     }
 
     public void NewGame() 
     {
         this.saveData = new SaveData();
-        dataHandler.Save(this.saveData);
+        this.saveData.Characters[0] = new Character("Leoht", 20, 25, 6, 8, 4, 6, 9, 0, 5, 0);
+        this.saveData.Characters[1] = new Character("Assassin", 22, 15, 9, 3, 8, 5, 4, 0, 5, 0);
+        this.saveData.Characters[2] = new Character("Hacker", 27, 30, 3, 8, 12, 5, 6, 0, 5, 0);
+        this.saveData.Characters[3] = new Character("Knight", 35, 10, 9, 4, 5, 12, 5, 0, 5, 0);
+        dataHandler.Save(new SaveData());
         LoadGame();
     }
 
@@ -61,7 +66,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(saveData);
         }
-        SceneManager.LoadScene("BattleScene");
+        SceneManager.LoadScene(this.saveData.CurrentScene);
     }
 
     public void SaveGame()
@@ -79,5 +84,10 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnApplicationQuit() 
     {
         SaveGame();
+    }
+
+    public SaveData getSaveData()
+    {
+        return saveData;
     }
 }

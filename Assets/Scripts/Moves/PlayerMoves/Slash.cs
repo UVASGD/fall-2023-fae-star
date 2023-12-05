@@ -11,7 +11,7 @@ public class Slash : Move
         critRate = 1.15f;
         enemyMove = false;
         base.Awake();
-        keyFrames = new Dictionary<int, float> { { 3, 1 } };
+        keyFrames = new Dictionary<int, float> { { 1, 1 } };
         characterAnimator.SetTrigger("Physical");
     }
 

@@ -3,19 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalEntityStats
+public class GlobalEntityStats : IDataPersistence
 {
+    //public static List<Character> characters;
     public static List<Character> characters = new List<Character>
-    {
-        new Character("Leoht", 20, 25, 6, 8, 4, 6, 9, 0, 5, 0),
-        new Character("Assassin", 22, 15, 9, 3, 8, 5, 4, 0, 5, 0),
-        new Character("Hacker", 27, 30, 3, 8, 12, 5, 6, 0, 5, 0),
-        new Character("Knight", 35, 10, 9, 4, 5, 12, 5, 0, 5, 0),
-    };
+        {
+            new Character("Leoht", 20, 25, 6, 8, 4, 6, 9, 0, 5, 0),
+            new Character("Assassin", 22, 15, 9, 3, 8, 5, 4, 0, 5, 0),
+            new Character("Hacker", 27, 30, 3, 8, 12, 5, 6, 0, 5, 0),
+            new Character("Knight", 35, 10, 9, 4, 5, 12, 5, 0, 5, 0),
+        };
     public static List<GameObject> characterObjects;
 
     public static List<Enemy> enemies = new List<Enemy>();
     public static GameObject[] enemyObjects;
+
+    public void SaveData(SaveData data)
+    {
+        // copies this over to the script that saves all the data
+        data.Characters = characters;
+    }
+
+    public void LoadData(SaveData data)
+    {
+        if (GlobalEntityStats.characters != null)
+            GlobalEntityStats.characters.Clear();
+        else
+            GlobalEntityStats.characters = new List<Character>();
+        foreach (Character c in data.Characters)
+        {
+            GlobalEntityStats.characters.Add(c);
+        }
+    }
 
 
     // This basically serves as a list of enemy types...

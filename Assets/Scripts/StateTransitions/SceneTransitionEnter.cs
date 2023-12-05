@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneTransition : MonoBehaviour
+public class SceneTransitionEnter : MonoBehaviour
 {
     [SerializeField] GameObject screen;
     [SerializeField] CanvasGroup menu;
@@ -24,6 +24,7 @@ public class SceneTransition : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         menu.interactable = true;
+        GlobalStateTracker.battleState = GlobalStateTracker.States.CharacterSelect;
         //Debug.Log("interactable");
         screen.SetActive(false);
     }

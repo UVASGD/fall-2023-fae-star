@@ -1,0 +1,66 @@
+NAME:Beda 
+PIC2:Hacker_Neutral
+The name’s Beda! Thanks for helping out with the uh… you know actually they look way worse than normal. But thanks. Even if you’re technically the reason they attacked in the first place.
+NAME:Deor 
+PIC1:Deorneutral
+You’re welcome.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Sorry about that, I’m Leoht and this is Deor–
+NAME:Beda 
+PIC2:Hacker_Happy
+Wow, a fae and human in the wild, what a combo!
+NAME:Leoht 
+You aren’t afraid of me?
+NAME:Beda 
+PIC2:Hacker_Neutral
+Well… sure I am. But I used to be one of King Oberon’s best hackers in the Cyber Defense Royal Guard! I’ve got nothing to be afraid of, though emo boy over here is dressed quite scary.
+NAME:Deor 
+PIC1:Deorneutral
+It helps me.
+NAME:Leoht 
+Cyber Defense?
+NAME:Beda 
+Most cities don’t have tech anywhere close to ours! Well, that was part of the problem–and the sketchy Fae King–which is why I left.
+NAME:Deor 
+PIC1:Deorneutral
+You’re a defector.
+NAME:Beda 
+Only the best.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+From the Faerie King Oberon? Doesn’t he keep the peace between faes and humans?
+NAME:Beda 
+Oh please, he’s only pretending to care. Corruption’s always been rampant, but I think these past years he’s been digging into something bigger in one of his projects. Something REAL bad, like worse than his normal authoritative self. Haven’t you noticed?
+NAME:Deor 
+PIC1:Deorneutral
+The mutant creatures.
+NAME: 
+Outside the base, the echoes of grumbling can be heard growing louder and louder. But accompanied by the monstrous noises is the sound of bodies is the slashing sound of a broadsword followed by falling corpses. Heavy footsteps stomp towards the door until it suddenly breaks open, swinging on its last remaining hinge. A large knight clad in shining armor charges in.
+NAME:Knight 
+PIC2:Earlspritesurprised
+Is everyone alright?! What brings you to this part of the woods?
+NAME: 
+Leoht, Deor, and Beda all whirl around in surprise.
+NAME:Beda 
+PIC1:Hacker_Surprised
+How do people keep breaking in?!
+NAME: 
+The shining knight turns to Leoht and stares at her in shock.
+NAME:Knight 
+PIC2:Earlspriteangry
+Why… is there a fae here? 
+NAME: 
+Before Leoht can respond, the group are surrounded by new enemies, much stronger and more humanlike than the previous creatures. As they begin attacking the base, Beda begins to panic.
+NAME:Beda 
+PIC1:Hacker_Sad
+No! They can’t destroy the lab! Not again!
+NAME:Knight 
+PIC2:Earlspriteangry
+I will not let you go, fae. You are full of ill intent.
+NAME:Leoht 
+PIC1:Mage_Neutral_Hat
+Wait, but I–
+NAME: 
+Suddenly, the enemies break into the base, surrounding the group within. The knight, though reluctant, turns around to stand tall in front of the new team, wielding his sword and shield. Wordlessly, Leoht, Deor and Beda stand to fight with him.
+ENDS:

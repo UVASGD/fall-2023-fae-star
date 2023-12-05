@@ -10,10 +10,14 @@ using System.IO;
 public class SaveData // holds the variables to be saved
 {
     public List<SerializableList<string>> MoveList; // this is what will be stored in the file
+    public List<Character> Characters;
+    public string CurrentScene;
 
     public SaveData() // stores default values
     {
         this.MoveList = DefaultData.DefaultMoveLists;
+        this.Characters = DefaultData.DefaultCharacters;
+        this.CurrentScene = DefaultData.DefaultScene;
     }
 }
 

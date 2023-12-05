@@ -48,6 +48,8 @@ public class TransitionManager : MonoBehaviour
     private static TextMeshProUGUI turnCounter;
     private static int turn;
 
+    [SerializeField] GameObject battleFinishObject;
+    private static GameObject battleFinish;
 
     private static int characterIndex;
 
@@ -88,6 +90,7 @@ public class TransitionManager : MonoBehaviour
             portraits[enemies[i]] = portraitObjects[i + 4];
         }
         turnCounter = turnCounterObject;
+        battleFinish = battleFinishObject;
         turn = 1;
         enterForCharacterSelection = 11;
         enterForEnemySelection = 11;
@@ -226,6 +229,11 @@ public class TransitionManager : MonoBehaviour
                 if (selections[6].checkLock(enterForEnemySelection))
                 {
                     selections[6].gameObject.SetActive(true);
+                    return;
+                }
+                if(selected == 4)
+                {
+                    reverseTransition();
                     return;
                 }
                 GlobalStateTracker.battleState = GlobalStateTracker.States.Acting;
@@ -372,6 +380,7 @@ public class TransitionManager : MonoBehaviour
         if (allLocked)
         {
             finishBattle();
+            return;
         }
         allLocked = true;
         for (int i = 0; i < 4; i++)
@@ -403,6 +412,8 @@ public class TransitionManager : MonoBehaviour
     public static void nextTurn()
     {
         selections[0].clearLocks();
+        selections[0].SetSelectSecret(11);
+        selections[6].SetSelectSecret(11);
         turn++;
         turnCounter.text = "Turn " + turn;
         selections[0].gameObject.SetActive(true);
@@ -410,7 +421,7 @@ public class TransitionManager : MonoBehaviour
 
     public static void finishBattle()
     {
-        // DoNothing for now
+        battleFinish.SetActive(true);
     }
 
     public static void setLock(int selector, int lockval, bool value)

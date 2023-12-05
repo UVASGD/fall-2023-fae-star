@@ -31,4 +31,14 @@ public class DefaultData
                 "Back"
             })
         };
+
+    public static readonly List<Character> DefaultCharacters = new List<Character>
+        {
+            new Character("Leoht", 20, 25, 6, 8, 4, 6, 9, 0, 5, 0),
+            new Character("Assassin", 22, 15, 9, 3, 8, 5, 4, 0, 5, 0),
+            new Character("Hacker", 27, 30, 3, 8, 12, 5, 6, 0, 5, 0),
+            new Character("Knight", 35, 10, 9, 4, 5, 12, 5, 0, 5, 0),
+        };
+
+    public static readonly string DefaultScene = "SC1";
 }

@@ -168,6 +168,7 @@ public class CharacterSelectTransition : MonoBehaviour, ITransition
         for(int i = 0; i < 3; i++)
         {
             selectedInfoSliders[i].value = characterSliders[selectedCharacter, i].value;
+            selectedInfoSliders[i].maxValue = characterSliders[selectedCharacter, i].maxValue;
         }
         selectedSliderValues[0].text = characterSliders[selectedCharacter, 0].value + "/" + characterSliders[selectedCharacter, 0].maxValue;
         selectedSliderValues[1].text = characterSliders[selectedCharacter, 1].value + "/" + characterSliders[selectedCharacter, 1].maxValue;

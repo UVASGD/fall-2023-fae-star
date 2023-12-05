@@ -12,7 +12,7 @@ public class WolfBite : Move
         critRate = 1.5f;
         enemyMove = true;
         base.Awake();
-        keyFrames = new Dictionary<int, float> { { 3, 1 } };
+        keyFrames = new Dictionary<int, float> { { 1, 1 } };
         characterAnimator.SetTrigger("Physical");
     }
 

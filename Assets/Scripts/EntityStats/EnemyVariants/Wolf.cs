@@ -8,9 +8,10 @@ public class Wolf : Enemy
     {
         this.name = "Wolf";
         this.level = level;
+        this.xp = 5;
         this.sprite = Resources.Load<Sprite>("Sprites/Enemies/Wolf");
         this.maxHealth = level * 5;
-        this.attack = (int) (level * 0.5f);
+        this.attack = (int) (level * 2);
         this.magicAttack = 0;
         this.technique = level;
         this.defense = (int)(level * 0.3f);
